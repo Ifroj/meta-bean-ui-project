@@ -1,0 +1,242 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Section Padding */
+.section-padding {
+    padding: 4rem 0;
+}
+
+@media (min-width: 768px) {
+    .section-padding {
+        padding: 6rem 0;
+    }
+}
+
+/* Section Titles */
+.section-title {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 2rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #FF9933, #138808);
+}
+
+/* Utility Classes */
+.text-gradient {
+    background: linear-gradient(90deg, #FF9933, #138808);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #FF9933, #138808);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.btn-primary {
+    background-color: #FF9933;
+    color: #FFFFFF;
+}
+
+.btn-primary:hover {
+    background-color: #E6892E;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 153, 51, 0.2);
+}
+
+.btn-secondary {
+    background-color: #138808;
+    color: #FFFFFF;
+}
+
+.btn-secondary:hover {
+    background-color: #117407;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(19, 136, 8, 0.2);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid #FF9933;
+    color: #FF9933;
+}
+
+.btn-outline:hover {
+    background-color: #FF9933;
+    color: #FFFFFF;
+}
+
+/* Cards */
+.card {
+    background-color: #3A4F41;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #4A5568;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #4A5568;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #D1D5DB;
+    font-weight: 500;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #3A4F41;
+    border: 1px solid #4A5568;
+    border-radius: 0.5rem;
+    color: #FFFFFF;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #FF9933;
+    box-shadow: 0 0 0 3px rgba(255, 153, 51, 0.1);
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Tables */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    background-color: #1A1A1A;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #FFFFFF;
+    border-bottom: 2px solid #4A5568;
+}
+
+.table td {
+    padding: 1rem;
+    border-bottom: 1px solid #4A5568;
+    color: #D1D5DB;
+}
+
+.table tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1A1A1A;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #FF9933, #138808);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #E6892E, #117407);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .container {
+        padding: 0 1.5rem;
+    }
+}
+
+.social-media-icons > a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+/* .navbar-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+} */
+

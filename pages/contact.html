@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/components/cards.css">
+    <link rel="stylesheet" href="../css/components/footer.css">
+    <link rel="stylesheet" href="../css/components/gallery.css">
+    <link rel="stylesheet" href="../css/components/hero.css">
+    <link rel="stylesheet" href="../css/components/navbar.css">
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+        <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        armyGreen: '#3A4F41',
+                        armyOlive: '#6B8E23',
+                        armyNight: '#0B0B0B',
+                        armyDark: '#1A1A1A',
+                        indiaSaffron: '#FF9933',
+                        indiaGreen: '#138808',
+                        indiaWhite: '#FFFFFF',
+                        steelGray: '#4A5568',
+                        cadetBlue: '#5D8AA8'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto-mono': ['Roboto Mono', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-glow': 'pulseGlow 2s infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 5px rgba(255, 153, 51, 0.3)' },
+                            '50%': { boxShadow: '0 0 20px rgba(255, 153, 51, 0.6)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .tracking-in-expand{-webkit-animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both}
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF9933, #138808);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .badge-icon {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.7), rgba(26, 26, 26, 0.9));
+        }
+        
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #FF9933, #138808);
+            border-radius: 5px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .parallax-section {
+                background-attachment: scroll;
+            }
+        }
+        
+@-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+    </style>
+</head>
+<body>
+    <header class="navbar">
+      <div class="navbar-container">
+        <!-- Logo -->
+        <div class="navbar-logo">
+          <div class="logo-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h1 class="logo-text">
+            <span class="saffron">Indian</span>
+            <span class="green">Army</span>
+          
+           
+          </h1>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="navbar-menu desktop">
+          <a href="http://127.0.0.1:5500/pages/home.html" class="navbar-link" data-route="/">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="http://127.0.0.1:5500/pages/ranks.html" class="navbar-link" data-route="/ranks">
+            <i class="fas fa-star"></i>
+            <span>Ranks</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/training.html"
+            class="navbar-link"
+            data-route="/training"
+          >
+            <i class="fas fa-graduation-cap"></i>
+            <span>Training</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/fitness.html"
+            class="navbar-link"
+            data-route="/fitness"
+          >
+            <i class="fas fa-dumbbell"></i>
+            <span>Fitness</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/gallery.html"
+            class="navbar-link"
+            data-route="/gallery"
+          >
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/join-army.html"
+            class="navbar-cta"
+            data-route="/join"
+          >
+            Join Army
+          </a>
+          <a  href="http://127.0.0.1:5500/pages/login.html" class="navbar-link" data-route="/login">
+            <i class="fas fa-user"></i>
+            <span>Login</span>
+          </a>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggle" class="navbar-link">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-container">
+          <ul class="mobile-menu-list">
+            <li>
+              <a href="#home" class="mobile-menu-link" data-route="/">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/ranks.html"
+                class="mobile-menu-link"
+                data-route="/ranks"
+              >
+                <i class="fas fa-star"></i>
+                <span>Ranks & Badges</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/training.html"
+                class="mobile-menu-link"
+                data-route="/training"
+              >
+                <i class="fas fa-graduation-cap"></i>
+                <span>Training Programs</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/fitness.html"
+                class="mobile-menu-link"
+                data-route="/fitness"
+              >
+                <i class="fas fa-dumbbell"></i>
+                <span>Fitness Guide</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/gallery.html"
+                class="mobile-menu-link"
+                data-route="/gallery"
+              >
+                <i class="fas fa-images"></i>
+                <span>Gallery</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/join-army.html"
+                class="mobile-menu-cta"
+                data-route="/join"
+              >
+                Join Indian Army
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/login.html"
+                class="mobile-menu-link"
+                data-route="/login"
+              >
+                <i class="fas fa-user"></i>
+                <span>Login / Register</span>
+              </a>
+            </li>
+            <li>
+              <button id="themeToggleMobile" class="mobile-menu-link">
+                <i class="fas fa-moon"></i>
+                <span>Toggle Theme</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <!-- Contact Page -->
+<section class="section-padding bg-armyDark">
+    <div class="container">
+        <h1 class="section-title text-center">Contact Us</h1>
+        <p class="text-center text-gray-400 max-w-3xl mx-auto mb-12">
+            Get in touch with us for inquiries, training information, or collaboration opportunities. 
+            We're here to help you with your journey to serve the nation.
+        </p>
+        
+        <div class="grid lg:grid-cols-2 gap-12">
+            <!-- Contact Information -->
+            <div>
+                <h2 class="text-2xl font-bold text-white mb-8">Get In Touch</h2>
+                
+                <div class="space-y-8">
+                    <!-- Headquarters -->
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 bg-indiaSaffron rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                            <i class="fas fa-map-marker-alt text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Headquarters</h3>
+                            <p class="text-gray-300">
+                                South Block,<br>
+                                New Delhi - 110011<br>
+                                India
+                            </p>
+                            <a href="#" class="inline-block mt-2 text-indiaSaffron hover:text-orange-400 text-sm">
+                                <i class="fas fa-directions mr-1"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Helpline -->
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 bg-indiaGreen rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                            <i class="fas fa-phone-alt text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Helpline Numbers</h3>
+                            <div class="space-y-2">
+                                <div>
+                                    <p class="text-gray-300 font-semibold">Recruitment Inquiries</p>
+                                    <p class="text-gray-400">1800-XXX-ARMY (2769)</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-300 font-semibold">Training Information</p>
+                                    <p class="text-gray-400">011-2301-XXXX</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-300 font-semibold">General Inquiries</p>
+                                    <p class="text-gray-400">011-2301-XXXX</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-400 text-sm mt-2">
+                                <i class="fas fa-clock mr-1"></i> Mon-Sat: 9 AM to 6 PM | Sun: 10 AM to 2 PM
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 bg-cadetBlue rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                            <i class="fas fa-envelope text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Email Addresses</h3>
+                            <div class="space-y-2">
+                                <div>
+                                    <p class="text-gray-300 font-semibold">General Contact</p>
+                                    <p class="text-gray-400">contact@indianarmyhub.gov.in</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-300 font-semibold">Recruitment</p>
+                                    <p class="text-gray-400">recruitment@indianarmyhub.gov.in</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-300 font-semibold">Training Queries</p>
+                                    <p class="text-gray-400">training@indianarmyhub.gov.in</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-300 font-semibold">Technical Support</p>
+                                    <p class="text-gray-400">support@indianarmyhub.gov.in</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 bg-steelGray rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                            <i class="fas fa-share-alt text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-4">Follow Us</h3>
+                            <div class="flex gap-3">
+                                <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors">
+                                    <i class="fab fa-facebook-f text-white"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-blue-400 rounded-full flex items-center justify-center transition-colors">
+                                    <i class="fab fa-twitter text-white"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-pink-600 rounded-full flex items-center justify-center transition-colors">
+                                    <i class="fab fa-instagram text-white"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors">
+                                    <i class="fab fa-youtube text-white"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors">
+                                    <i class="fab fa-linkedin-in text-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Regional Offices -->
+                <div class="mt-12">
+                    <h3 class="text-xl font-bold text-white mb-6">Regional Recruitment Offices</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-armyGreen p-4 rounded-lg">
+                            <h4 class="font-bold text-white mb-1">Delhi</h4>
+                            <p class="text-gray-300 text-sm">011-2567-XXXX</p>
+                        </div>
+                        <div class="bg-armyGreen p-4 rounded-lg">
+                            <h4 class="font-bold text-white mb-1">Mumbai</h4>
+                            <p class="text-gray-300 text-sm">022-2678-XXXX</p>
+                        </div>
+                        <div class="bg-armyGreen p-4 rounded-lg">
+                            <h4 class="font-bold text-white mb-1">Chennai</h4>
+                            <p class="text-gray-300 text-sm">044-2789-XXXX</p>
+                        </div>
+                        <div class="bg-armyGreen p-4 rounded-lg">
+                            <h4 class="font-bold text-white mb-1">Kolkata</h4>
+                            <p class="text-gray-300 text-sm">033-2890-XXXX</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div>
+                <div class="bg-armyGreen rounded-xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-6">Send Us a Message</h2>
+                    
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="form-group">
+                                <label for="firstName" class="form-label">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="lastName" class="form-label">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject *</label>
+                            <select id="subject" name="subject" class="form-input" required>
+                                <option value="">Select a subject</option>
+                                <option value="recruitment">Recruitment Inquiry</option>
+                                <option value="training">Training Information</option>
+                                <option value="collaboration">Collaboration Opportunity</option>
+                                <option value="media">Media Request</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="other">Other Inquiry</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message *</label>
+                            <textarea id="message" name="message" rows="6" class="form-input form-textarea" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="flex items-center">
+                                <input type="checkbox" name="newsletter" class="mr-2">
+                                <span class="text-gray-300 text-sm">Subscribe to our newsletter for updates</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-full">
+                            <i class="fas fa-paper-plane mr-2"></i> Send Message
+                        </button>
+                    </form>
+                    
+                    <p class="text-gray-400 text-sm mt-6">
+                        * Required fields. We typically respond within 24-48 hours on working days.
+                    </p>
+                </div>
+                
+                <!-- FAQ Quick Links -->
+                <div class="mt-8">
+                    <h3 class="text-xl font-bold text-white mb-4">Quick Help</h3>
+                    <div class="space-y-3">
+                        <a href="#faq" class="flex items-center text-gray-300 hover:text-indiaSaffron transition-colors" data-page="faq">
+                            <i class="fas fa-question-circle mr-3"></i>
+                            <span>Frequently Asked Questions</span>
+                        </a>
+                        <a href="#join" class="flex items-center text-gray-300 hover:text-indiaSaffron transition-colors" data-page="join">
+                            <i class="fas fa-file-alt mr-3"></i>
+                            <span>Application Process</span>
+                        </a>
+                        <a href="#training" class="flex items-center text-gray-300 hover:text-indiaSaffron transition-colors" data-page="training">
+                            <i class="fas fa-graduation-cap mr-3"></i>
+                            <span>Training Requirements</span>
+                        </a>
+                        <a href="#events" class="flex items-center text-gray-300 hover:text-indiaSaffron transition-colors" data-page="events">
+                            <i class="fas fa-calendar-alt mr-3"></i>
+                            <span>Upcoming Events</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="bg-armyGreen">
+    <div class="container">
+        <div class="py-12">
+            <h2 class="text-2xl font-bold text-white mb-8 text-center">Find Us On Map</h2>
+            
+            <div class="bg-armyDark rounded-xl p-8">
+                <div class="h-64 md:h-96 bg-gradient-to-br from-gray-700 to-gray-900 rounded-lg flex flex-col items-center justify-center">
+                    <i class="fas fa-map-marked-alt text-white text-5xl mb-4"></i>
+                    <p class="text-white text-lg mb-2">Indian Army Headquarters</p>
+                    <p class="text-gray-300">South Block, New Delhi - 110011</p>
+                    
+                    <div class="mt-6 flex gap-4">
+                        <button class="btn btn-outline border-white text-white hover:bg-white hover:text-armyDark">
+                            <i class="fas fa-directions mr-2"></i> Get Directions
+                        </button>
+                        <button class="btn btn-outline border-white text-white hover:bg-white hover:text-armyDark">
+                            <i class="fas fa-download mr-2"></i> Download Map
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6 mt-8">
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-indiaSaffron rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-subway text-white"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Metro Access</h4>
+                        <p class="text-gray-300 text-sm">
+                            Central Secretariat Metro Station<br>
+                            Violet & Yellow Lines
+                        </p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-indiaGreen rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-bus text-white"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Bus Routes</h4>
+                        <p class="text-gray-300 text-sm">
+                            Bus stops at India Gate<br>
+                            Routes: 522, 540, 580
+                        </p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-cadetBlue rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-car text-white"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Parking</h4>
+                        <p class="text-gray-300 text-sm">
+                            Limited visitor parking available<br>
+                            Prior appointment required
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

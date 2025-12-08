@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/components/cards.css">
+    <link rel="stylesheet" href="../css/components/footer.css">
+    <link rel="stylesheet" href="../css/components/gallery.css">
+    <link rel="stylesheet" href="../css/components/hero.css">
+    <link rel="stylesheet" href="../css/components/navbar.css">
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/style.css">
+        <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        armyGreen: '#3A4F41',
+                        armyOlive: '#6B8E23',
+                        armyNight: '#0B0B0B',
+                        armyDark: '#1A1A1A',
+                        indiaSaffron: '#FF9933',
+                        indiaGreen: '#138808',
+                        indiaWhite: '#FFFFFF',
+                        steelGray: '#4A5568',
+                        cadetBlue: '#5D8AA8'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto-mono': ['Roboto Mono', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-glow': 'pulseGlow 2s infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 5px rgba(255, 153, 51, 0.3)' },
+                            '50%': { boxShadow: '0 0 20px rgba(255, 153, 51, 0.6)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .tracking-in-expand{-webkit-animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both}
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF9933, #138808);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .badge-icon {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.7), rgba(26, 26, 26, 0.9));
+        }
+        
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #FF9933, #138808);
+            border-radius: 5px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .parallax-section {
+                background-attachment: scroll;
+            }
+        }
+        
+@-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+    </style>
+</head>
+<body>
+    <header class="navbar">
+      <div class="navbar-container">
+        <!-- Logo -->
+        <div class="navbar-logo">
+          <div class="logo-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h1 class="logo-text">
+            <span class="saffron">Indian</span>
+            <span class="green">Army</span>
+          
+           
+          </h1>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="navbar-menu desktop">
+          <a href="http://127.0.0.1:5500/pages/home.html" class="navbar-link" data-route="/">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="http://127.0.0.1:5500/pages/ranks.html" class="navbar-link" data-route="/ranks">
+            <i class="fas fa-star"></i>
+            <span>Ranks</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/training.html"
+            class="navbar-link"
+            data-route="/training"
+          >
+            <i class="fas fa-graduation-cap"></i>
+            <span>Training</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/fitness.html"
+            class="navbar-link"
+            data-route="/fitness"
+          >
+            <i class="fas fa-dumbbell"></i>
+            <span>Fitness</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/gallery.html"
+            class="navbar-link"
+            data-route="/gallery"
+          >
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/join-army.html"
+            class="navbar-cta"
+            data-route="/join"
+          >
+            Join Army
+          </a>
+          <a  href="http://127.0.0.1:5500/pages/login.html" class="navbar-link" data-route="/login">
+            <i class="fas fa-user"></i>
+            <span>Login</span>
+          </a>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggle" class="navbar-link">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-container">
+          <ul class="mobile-menu-list">
+            <li>
+              <a href="#home" class="mobile-menu-link" data-route="/">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/ranks.html"
+                class="mobile-menu-link"
+                data-route="/ranks"
+              >
+                <i class="fas fa-star"></i>
+                <span>Ranks & Badges</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/training.html"
+                class="mobile-menu-link"
+                data-route="/training"
+              >
+                <i class="fas fa-graduation-cap"></i>
+                <span>Training Programs</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/fitness.html"
+                class="mobile-menu-link"
+                data-route="/fitness"
+              >
+                <i class="fas fa-dumbbell"></i>
+                <span>Fitness Guide</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/gallery.html"
+                class="mobile-menu-link"
+                data-route="/gallery"
+              >
+                <i class="fas fa-images"></i>
+                <span>Gallery</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/join-army.html"
+                class="mobile-menu-cta"
+                data-route="/join"
+              >
+                Join Indian Army
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/login.html"
+                class="mobile-menu-link"
+                data-route="/login"
+              >
+                <i class="fas fa-user"></i>
+                <span>Login / Register</span>
+              </a>
+            </li>
+            <li>
+              <button id="themeToggleMobile" class="mobile-menu-link">
+                <i class="fas fa-moon"></i>
+                <span>Toggle Theme</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Events & Camps Page -->
+<section class="section-padding bg-armyDark">
+    <div class="container">
+        <h1 class="section-title text-center">Events & Camps</h1>
+        <p class="text-center text-gray-400 max-w-3xl mx-auto mb-12">
+            Stay updated with upcoming recruitment rallies, training camps, and special events 
+            organized by the Indian Army across the nation.
+        </p>
+        
+        <!-- Upcoming Events -->
+        <div class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Upcoming Events</h2>
+            
+            <div class="space-y-6">
+                <!-- Event 1 -->
+                <div class="bg-armyGreen rounded-xl overflow-hidden">
+                    <div class="grid md:grid-cols-3">
+                        <div class="md:col-span-1 bg-gradient-to-r from-indiaSaffron to-orange-500 p-6 flex flex-col items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-white mb-1">15</div>
+                                <div class="text-white font-semibold">JANUARY</div>
+                                <div class="text-white text-sm mt-2">2025</div>
+                            </div>
+                            <div class="mt-4">
+                                <span class="bg-white text-orange-600 px-3 py-1 rounded-full text-sm font-semibold">
+                                    Recruitment Rally
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="md:col-span-2 p-6">
+                            <h3 class="text-xl font-bold text-white mb-3">Agniveer Recruitment Rally - Delhi Region</h3>
+                            <p class="text-gray-300 mb-4">
+                                Mega recruitment rally for Agniveer (General Duty) in the Delhi region. 
+                                Open to candidates from Delhi, Haryana, and Western UP.
+                            </p>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                                <div>
+                                    <p class="text-gray-400 text-sm">Venue</p>
+                                    <p class="text-white font-medium">Delhi Cantonment</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-sm">Reporting Time</p>
+                                    <p class="text-white font-medium">06:00 AM</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-sm">Duration</p>
+                                    <p class="text-white font-medium">5 Days</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-sm">Seats Available</p>
+                                    <p class="text-white font-medium">500+</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="#" class="btn btn-primary">
+                                    <i class="fas fa-calendar-check mr-2"></i> Register Now
+                                </a>
+                                <a href="#" class="btn btn-outline border-white text-white hover:bg-white hover:text-armyDark">
+                                    <i class="fas fa-download mr-2"></i> Download Notice
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 2 -->
+                <div class="bg-armyGreen rounded-xl overflow-hidden">
+                    <div class="grid md:grid-cols-3">
+                        <div class="md:col-span-1 bg-gradient-to-r from-indiaGreen to-green-500 p-6 flex flex-col items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-white mb-1">26</div>
+                                <div class="text-white font-semibold">JANUARY</div>
+                                <div class="text-white text-sm mt-2">2025</div>
+                            </div>
+                            <div class="mt-4">
+                                <span class="bg-white text-green-600 px-3 py-1 rounded-full text-sm font-semibold">
+                                    Republic Day
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="md:col-span-2 p-6">
+                            <h3 class="text-xl font-bold text-white mb-3">Republic Day Parade & Camp</h3>
+                            <p class="text-gray-300 mb-4">
+                                Annual Republic Day celebrations featuring military parade, 
+                                tableaux, and cultural programs. NCC cadets from across India participate.
+                            </p>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                                <div>
+                                    <p class="text-gray-400 text-sm">Location</p>
+                                    <p class="text-white font-medium">Rajpath, New Delhi</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-sm">Time</p>
+                                    <p class="text-white font-medium">09:30 AM</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-sm">Camp Dates</p>
+                                    <p class="text-white font-medium">Jan 1-29</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-sm">Participants</p>
+                                    <p class="text-white font-medium">2,000+ Cadets</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="#" class="btn btn-primary">
+                                    <i class="fas fa-ticket-alt mr-2"></i> Book Viewing Gallery
+                                </a>
+                                <a href="#" class="btn btn-outline border-white text-white hover:bg-white hover:text-armyDark">
+                                    <i class="fas fa-info-circle mr-2"></i> Event Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 3 -->
+                <div class="bg-armyGreen rounded-xl overflow-hidden">
+                    <div class="grid md:grid-cols-3">
+                        <div class="md:col-span-1 bg-gradient-to-r from-blue-500 to-purple-500 p-6 flex flex-col items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-white mb-1">10</div>
+                                <div class="text-white font-semibold">FEBRUARY</div>
+                                <div class="text-white text-sm mt-2">2025</div>
+                            </div>
+                            <div class="mt-4">
+                                <span class="bg-white text-blue-600 px-3 py-1 rounded-full text-sm font-semibold">
+                                    Career Fair
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="md:col-span-2 p-6">
+                            <h3 class="text-xl font-bold text-white mb-3">Army Career Expo - Mumbai</h3>
+                            <p class="text-gray-300 mb-4">
+                                Interactive career exhibition showcasing various opportunities in the Indian Army. 
+                                Meet serving officers, see equipment displays, and get career guidance.
+                            </p>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                                <div>
+                                    <p class="text-gray-400 text-sm">Venue</p>
+                                    <p class="text-white font-medium">Mumbai University Ground</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-sm">Timing</p>
+                                    <p class="text-white font-medium">10 AM - 6 PM</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-sm">Entry</p>
+                                    <p class="text-white font-medium">Free for All</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-sm">Expected Footfall</p>
+                                    <p class="text-white font-medium">10,000+</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="#" class="btn btn-primary">
+                                    <i class="fas fa-map-marker-alt mr-2"></i> Get Directions
+                                </a>
+                                <a href="#" class="btn btn-outline border-white text-white hover:bg-white hover:text-armyDark">
+                                    <i class="fas fa-calendar-plus mr-2"></i> Add to Calendar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Training Camps -->
+        <div class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Special Training Camps</h2>
+            
+            <div class="cards-container cards-grid-3">
+                <div class="card-base">
+                    <div class="card-header">
+                        <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded">ADVANCED</span>
+                        <span class="text-gray-400 text-sm ml-2">March 1-30, 2025</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="text-xl font-bold text-white mb-3">Adventure Training Camp</h3>
+                        <p class="text-gray-300 mb-4">
+                            Extreme adventure training including rock climbing, mountaineering, 
+                            white water rafting, and paragliding.
+                        </p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Location:</span>
+                                <span class="text-white">Manali, Himachal Pradesh</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Eligibility:</span>
+                                <span class="text-white">Age 18-25, Fit</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Fee:</span>
+                                <span class="text-white">₹15,000 (Incl. all)</span>
+                            </div>
+                        </div>
+                        <a href="#" class="inline-block text-indiaSaffron hover:text-orange-400 font-medium">
+                            Apply for Camp <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card-base">
+                    <div class="card-header">
+                        <span class="bg-green-600 text-white text-xs font-bold px-3 py-1 rounded">BASIC</span>
+                        <span class="text-gray-400 text-sm ml-2">April 5-20, 2025</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="text-xl font-bold text-white mb-3">Youth Leadership Camp</h3>
+                        <p class="text-gray-300 mb-4">
+                            Develop leadership qualities, team spirit, and discipline through 
+                            military-style training activities.
+                        </p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Location:</span>
+                                <span class="text-white">Pune, Maharashtra</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Eligibility:</span>
+                                <span class="text-white">Students (16-21)</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Fee:</span>
+                                <span class="text-white">₹8,500 (Subsidized)</span>
+                            </div>
+                        </div>
+                        <a href="#" class="inline-block text-indiaSaffron hover:text-orange-400 font-medium">
+                            Register Now <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card-base">
+                    <div class="card-header">
+                        <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded">TECHNICAL</span>
+                        <span class="text-gray-400 text-sm ml-2">May 10-25, 2025</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="text-xl font-bold text-white mb-3">Robotics & AI Workshop</h3>
+                        <p class="text-gray-300 mb-4">
+                            Hands-on workshop on military applications of robotics, 
+                            artificial intelligence, and drone technology.
+                        </p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Location:</span>
+                                <span class="text-white">Bengaluru, Karnataka</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Eligibility:</span>
+                                <span class="text-white">Engineering Students</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Fee:</span>
+                                <span class="text-white">₹12,000</span>
+                            </div>
+                        </div>
+                        <a href="#" class="inline-block text-indiaSaffron hover:text-orange-400 font-medium">
+                            Book Seat <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Calendar View -->
+<section class="section-padding bg-armyGreen">
+    <div class="container">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Event Calendar 2025</h2>
+        
+        <div class="bg-armyDark rounded-xl p-6">
+            <div class="overflow-x-auto">
+                <table class="table w-full">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Event Type</th>
+                            <th>Event Name</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-semibold">January</td>
+                            <td><span class="bg-red-600 text-white px-2 py-1 rounded text-xs">Recruitment</span></td>
+                            <td>Agniveer Rally - North Zone</td>
+                            <td>Jammu & Kashmir</td>
+                            <td><span class="text-green-500 font-semibold">Open</span></td>
+                            <td>
+                                <a href="#" class="text-indiaSaffron hover:text-orange-400 font-medium">
+                                    Apply <i class="fas fa-external-link-alt ml-1"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">February</td>
+                            <td><span class="bg-blue-600 text-white px-2 py-1 rounded text-xs">Training</span></td>
+                            <td>Winter Warfare Camp</td>
+                            <td>Ladakh</td>
+                            <td><span class="text-yellow-500 font-semibold">Upcoming</span></td>
+                            <td>
+                                <a href="#" class="text-indiaSaffron hover:text-orange-400 font-medium">
+                                    Notify Me <i class="fas fa-bell ml-1"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">March</td>
+                            <td><span class="bg-green-600 text-white px-2 py-1 rounded text-xs">Camp</span></td>
+                            <td>Youth Leadership Camp</td>
+                            <td>Dehradun</td>
+                            <td><span class="text-blue-500 font-semibold">Registration Open</span></td>
+                            <td>
+                                <a href="#" class="text-indiaSaffron hover:text-orange-400 font-medium">
+                                    Register <i class="fas fa-user-plus ml-1"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">April</td>
+                            <td><span class="bg-purple-600 text-white px-2 py-1 rounded text-xs">Exhibition</span></td>
+                            <td>Defense Technology Expo</td>
+                            <td>Chennai</td>
+                            <td><span class="text-yellow-500 font-semibold">Upcoming</span></td>
+                            <td>
+                                <a href="#" class="text-indiaSaffron hover:text-orange-400 font-medium">
+                                    Details <i class="fas fa-info-circle ml-1"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">May</td>
+                            <td><span class="bg-red-600 text-white px-2 py-1 rounded text-xs">Recruitment</span></td>
+                            <td>Technical Entry Rally</td>
+                            <td>Hyderabad</td>
+                            <td><span class="text-gray-400 font-semibold">Announced</span></td>
+                            <td>
+                                <a href="#" class="text-indiaSaffron hover:text-orange-400 font-medium">
+                                    View Notice <i class="fas fa-file-alt ml-1"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">June</td>
+                            <td><span class="bg-yellow-600 text-white px-2 py-1 rounded text-xs">Celebration</span></td>
+                            <td>Army Day Celebrations</td>
+                            <td>All Commands</td>
+                            <td><span class="text-green-500 font-semibold">Open</span></td>
+                            <td>
+                                <a href="#" class="text-indiaSaffron hover:text-orange-400 font-medium">
+                                    Participate <i class="fas fa-calendar-check ml-1"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Newsletter Subscription -->
+        <div class="mt-12 bg-gradient-to-r from-indiaSaffron to-indiaGreen rounded-xl p-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold text-white mb-4">Stay Updated</h3>
+                <p class="text-white mb-6 max-w-2xl mx-auto">
+                    Never miss an event! Subscribe to our newsletter and get timely updates 
+                    about recruitment rallies, training camps, and special events.
+                </p>
+                
+                <form class="max-w-md mx-auto flex gap-2">
+                    <input type="email" placeholder="Enter your email" 
+                           class="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-white">
+                    <button type="submit" class="btn btn-primary bg-white text-armyDark hover:bg-gray-100">
+                        <i class="fas fa-paper-plane mr-2"></i> Subscribe
+                    </button>
+                </form>
+                
+                <p class="text-white text-sm mt-4">
+                    We respect your privacy. Unsubscribe anytime.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

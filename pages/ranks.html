@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/components/cards.css">
+    <link rel="stylesheet" href="../css/components/footer.css">
+    <link rel="stylesheet" href="../css/components/gallery.css">
+    <link rel="stylesheet" href="../css/components/hero.css">
+    <link rel="stylesheet" href="../css/components/navbar.css">
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/style.css">
+        <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        armyGreen: '#3A4F41',
+                        armyOlive: '#6B8E23',
+                        armyNight: '#0B0B0B',
+                        armyDark: '#1A1A1A',
+                        indiaSaffron: '#FF9933',
+                        indiaGreen: '#138808',
+                        indiaWhite: '#FFFFFF',
+                        steelGray: '#4A5568',
+                        cadetBlue: '#5D8AA8'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto-mono': ['Roboto Mono', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-glow': 'pulseGlow 2s infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 5px rgba(255, 153, 51, 0.3)' },
+                            '50%': { boxShadow: '0 0 20px rgba(255, 153, 51, 0.6)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .tracking-in-expand{-webkit-animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both}
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF9933, #138808);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .badge-icon {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.7), rgba(26, 26, 26, 0.9));
+        }
+        
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #FF9933, #138808);
+            border-radius: 5px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .parallax-section {
+                background-attachment: scroll;
+            }
+        }
+        
+@-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+    </style>
+
+</head>
+<body>
+    
+
+    <header class="navbar">
+      <div class="navbar-container">
+        <!-- Logo -->
+        <div class="navbar-logo">
+          <div class="logo-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h1 class="logo-text">
+            <span class="saffron">Indian</span>
+            <span class="green">Army</span>
+          
+           
+          </h1>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="navbar-menu desktop">
+          <a href="http://127.0.0.1:5500/pages/home.html" class="navbar-link" data-route="/">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="http://127.0.0.1:5500/pages/ranks.html" class="navbar-link" data-route="/ranks">
+            <i class="fas fa-star"></i>
+            <span>Ranks</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/training.html"
+            class="navbar-link"
+            data-route="/training"
+          >
+            <i class="fas fa-graduation-cap"></i>
+            <span>Training</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/fitness.html"
+            class="navbar-link"
+            data-route="/fitness"
+          >
+            <i class="fas fa-dumbbell"></i>
+            <span>Fitness</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/gallery.html"
+            class="navbar-link"
+            data-route="/gallery"
+          >
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/join-army.html"
+            class="navbar-cta"
+            data-route="/join"
+          >
+            Join Army
+          </a>
+          <a  href="http://127.0.0.1:5500/pages/login.html" class="navbar-link" data-route="/login">
+            <i class="fas fa-user"></i>
+            <span>Login</span>
+          </a>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggle" class="navbar-link">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-container">
+          <ul class="mobile-menu-list">
+            <li>
+              <a href="#home" class="mobile-menu-link" data-route="/">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/ranks.html"
+                class="mobile-menu-link"
+                data-route="/ranks"
+              >
+                <i class="fas fa-star"></i>
+                <span>Ranks & Badges</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/training.html"
+                class="mobile-menu-link"
+                data-route="/training"
+              >
+                <i class="fas fa-graduation-cap"></i>
+                <span>Training Programs</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/fitness.html"
+                class="mobile-menu-link"
+                data-route="/fitness"
+              >
+                <i class="fas fa-dumbbell"></i>
+                <span>Fitness Guide</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/gallery.html"
+                class="mobile-menu-link"
+                data-route="/gallery"
+              >
+                <i class="fas fa-images"></i>
+                <span>Gallery</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/join-army.html"
+                class="mobile-menu-cta"
+                data-route="/join"
+              >
+                Join Indian Army
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/login.html"
+                class="mobile-menu-link"
+                data-route="/login"
+              >
+                <i class="fas fa-user"></i>
+                <span>Login / Register</span>
+              </a>
+            </li>
+            <li>
+              <button id="themeToggleMobile" class="mobile-menu-link">
+                <i class="fas fa-moon"></i>
+                <span>Toggle Theme</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Ranks & Badges Page -->
+<section class="section-padding bg-armyDark">
+    <div class="container">
+        <h1 class="section-title text-center">Indian Army Ranks & Badges</h1>
+        <p class="text-center text-gray-400 max-w-3xl mx-auto mb-12">
+            The hierarchical structure of the Indian Army represents authority, responsibility, and honor. 
+            Each rank carries specific duties and privileges.
+        </p>
+        
+        <!-- Commissioned Officers -->
+        <div class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Commissioned Officers</h2>
+            <p class="text-gray-400 text-center mb-8">
+                Officers who hold a commission from the President of India. They lead from the front and command troops.
+            </p>
+            
+            <div class="cards-container cards-grid-3">
+                <div class="card-base">
+                    <div class="card-body">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-star text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Field Marshal</h3>
+                                <p class="text-gray-400 text-sm">5 Star Rank</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">
+                            Honorary rank, the highest attainable rank in the Indian Army. Only two officers have been conferred this rank.
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-700">
+                            <p class="text-sm text-gray-400"><strong>Insignia:</strong> National emblem over a crossed baton and saber in a wreath</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-base">
+                    <div class="card-body">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-star text-white"></i>
+                                <i class="fas fa-star text-white ml-[-8px]"></i>
+                                <i class="fas fa-star text-white ml-[-8px]"></i>
+                                <i class="fas fa-star text-white ml-[-8px]"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">General</h3>
+                                <p class="text-gray-400 text-sm">4 Star Rank</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">
+                            Highest operational rank, held by the Chief of Army Staff. Commands field armies and has significant strategic responsibilities.
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-700">
+                            <p class="text-sm text-gray-400"><strong>Insignia:</strong> Crossed baton and saber with a star</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-base">
+                    <div class="card-body">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-star text-white"></i>
+                                <i class="fas fa-star text-white ml-[-8px]"></i>
+                                <i class="fas fa-star text-white ml-[-8px]"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Lieutenant General</h3>
+                                <p class="text-gray-400 text-sm">3 Star Rank</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">
+                            Commands a corps-sized formation (20,000-45,000 troops). Often holds appointments like Army Commander or Vice Chief.
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-700">
+                            <p class="text-sm text-gray-400"><strong>Insignia:</strong> Crossed baton and saber</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cards-container cards-grid-3 mt-6">
+                <div class="card-base">
+                    <div class="card-body">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-star text-white"></i>
+                                <i class="fas fa-star text-white ml-[-8px]"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Major General</h3>
+                                <p class="text-gray-400 text-sm">2 Star Rank</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">
+                            Commands a division-sized formation (10,000-15,000 troops). Key appointments in headquarters and field formations.
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-700">
+                            <p class="text-sm text-gray-400"><strong>Insignia:</strong> Five-pointed star</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-base">
+                    <div class="card-body">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-star text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Brigadier</h3>
+                                <p class="text-gray-400 text-sm">1 Star Rank</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">
+                            Commands a brigade-sized formation (3,000-5,000 troops). Senior staff appointments in various headquarters.
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-700">
+                            <p class="text-sm text-gray-400"><strong>Insignia:</strong> Three five-pointed stars in a triangle</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-base">
+                    <div class="card-body">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-crown text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Colonel & Below</h3>
+                                <p class="text-gray-400 text-sm">Field Officers</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">
+                            Includes Colonel, Lieutenant Colonel, and Major. Command battalions/regiments and hold key staff appointments.
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-700">
+                            <p class="text-sm text-gray-400"><strong>Insignia:</strong> Various combinations of stars and stripes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Junior Commissioned Officers -->
+        <div class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Junior Commissioned Officers (JCOs)</h2>
+            <p class="text-gray-400 text-center mb-8">
+                Senior non-commissioned officers who act as a bridge between commissioned officers and other ranks.
+            </p>
+            
+            <div class="overflow-x-auto">
+                <table class="table w-full">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Insignia</th>
+                            <th>Role & Responsibilities</th>
+                            <th>Promotion Path</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-semibold">Subedar Major</td>
+                            <td>
+                                <div class="w-8 h-8 bg-gold-500 rounded-full flex items-center justify-center mx-auto">
+                                    <i class="fas fa-star text-white text-sm"></i>
+                                </div>
+                            </td>
+                            <td>Senior-most JCO, advisor to commanding officer, discipline maintenance</td>
+                            <td>After 26-28 years of service</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Subedar</td>
+                            <td>
+                                <div class="w-8 h-8 bg-silver-500 rounded-full flex items-center justify-center mx-auto">
+                                    <i class="fas fa-star text-white text-sm"></i>
+                                </div>
+                            </td>
+                            <td>Platoon commander, training supervision, administrative duties</td>
+                            <td>After 20-22 years of service</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Naib Subedar</td>
+                            <td>
+                                <div class="w-8 h-8 bg-bronze-500 rounded-full flex items-center justify-center mx-auto">
+                                    <i class="fas fa-star text-white text-sm"></i>
+                                </div>
+                            </td>
+                            <td>Section commander, assists Subedar in platoon duties</td>
+                            <td>After 15-18 years of service</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Other Ranks -->
+        <div class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Other Ranks (ORs)</h2>
+            <p class="text-gray-400 text-center mb-8">
+                Soldiers who form the backbone of the Indian Army's fighting force.
+            </p>
+            
+            <div class="cards-container cards-grid-4">
+                <div class="card-base text-center p-6">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chevron-up text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Havildar</h3>
+                    <p class="text-gray-300 text-sm">Section second-in-command, 12+ years service</p>
+                </div>
+                
+                <div class="card-base text-center p-6">
+                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chevron-up text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Naik</h3>
+                    <p class="text-gray-300 text-sm">Section commander, 8-10 years service</p>
+                </div>
+                
+                <div class="card-base text-center p-6">
+                    <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chevron-up text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Lance Naik</h3>
+                    <p class="text-gray-300 text-sm">Assistant section commander, 4-6 years service</p>
+                </div>
+                
+                <div class="card-base text-center p-6">
+                    <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Sepoy</h3>
+                    <p class="text-gray-300 text-sm">Basic soldier, fresh recruit to 3 years service</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Badges Gallery -->
+        <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Regimental Badges & Insignia</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div class="bg-armyGreen p-4 rounded-lg text-center">
+                    <div class="text-3xl mb-2">
+                        <i class="fas fa-crosshairs text-red-400"></i>
+                    </div>
+                    <p class="text-sm text-gray-300">Infantry</p>
+                </div>
+                
+                <div class="bg-armyGreen p-4 rounded-lg text-center">
+                    <div class="text-3xl mb-2">
+                        <i class="fas fa-tank text-green-400"></i>
+                    </div>
+                    <p class="text-sm text-gray-300">Armoured Corps</p>
+                </div>
+                
+                <div class="bg-armyGreen p-4 rounded-lg text-center">
+                    <div class="text-3xl mb-2">
+                        <i class="fas fa-gun text-yellow-400"></i>
+                    </div>
+                    <p class="text-sm text-gray-300">Artillery</p>
+                </div>
+                
+                <div class="bg-armyGreen p-4 rounded-lg text-center">
+                    <div class="text-3xl mb-2">
+                        <i class="fas fa-helicopter text-blue-400"></i>
+                    </div>
+                    <p class="text-sm text-gray-300">Aviation</p>
+                </div>
+                
+                <div class="bg-armyGreen p-4 rounded-lg text-center">
+                    <div class="text-3xl mb-2">
+                        <i class="fas fa-wrench text-orange-400"></i>
+                    </div>
+                    <p class="text-sm text-gray-300">Engineers</p>
+                </div>
+                
+                <div class="bg-armyGreen p-4 rounded-lg text-center">
+                    <div class="text-3xl mb-2">
+                        <i class="fas fa-signal text-purple-400"></i>
+                    </div>
+                    <p class="text-sm text-gray-300">Signals</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Resources -->
+<section class="section-padding bg-armyGreen">
+    <div class="container">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Additional Resources</h2>
+        
+        <div class="cards-container cards-grid-3">
+            <div class="card-base">
+                <div class="card-body">
+                    <h3 class="text-xl font-bold text-white mb-4">Rank Promotion Criteria</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Time-based promotions for ORs
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Selection boards for JCOs
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Merit-based for officers
+                        </li>
+                    </ul>
+                    <a href="#" class="inline-block mt-4 text-orange-500 hover:text-orange-400 font-medium">
+                        Detailed Criteria <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="card-base">
+                <div class="card-body">
+                    <h3 class="text-xl font-bold text-white mb-4">Pay & Allowances</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center">
+                            <i class="fas fa-rupee-sign text-green-500 mr-2"></i>
+                            Basic pay scale
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-home text-blue-500 mr-2"></i>
+                            House rent allowance
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-utensils text-yellow-500 mr-2"></i>
+                            Ration allowance
+                        </li>
+                    </ul>
+                    <a href="#" class="inline-block mt-4 text-orange-500 hover:text-orange-400 font-medium">
+                        Salary Structure <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="card-base">
+                <div class="card-body">
+                    <h3 class="text-xl font-bold text-white mb-4">Download Resources</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center">
+                            <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                            Rank structure PDF
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-images text-blue-500 mr-2"></i>
+                            Insignia images
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-video text-purple-500 mr-2"></i>
+                            Educational videos
+                        </li>
+                    </ul>
+                    <a href="#" class="inline-block mt-4 text-orange-500 hover:text-orange-400 font-medium">
+                        Download All <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

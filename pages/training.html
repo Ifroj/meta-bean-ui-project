@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/components/cards.css">
+    <link rel="stylesheet" href="../css/components/footer.css">
+    <link rel="stylesheet" href="../css/components/gallery.css">
+    <link rel="stylesheet" href="../css/components/hero.css">
+    <link rel="stylesheet" href="../css/components/navbar.css">
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/style.css">
+        <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        armyGreen: '#3A4F41',
+                        armyOlive: '#6B8E23',
+                        armyNight: '#0B0B0B',
+                        armyDark: '#1A1A1A',
+                        indiaSaffron: '#FF9933',
+                        indiaGreen: '#138808',
+                        indiaWhite: '#FFFFFF',
+                        steelGray: '#4A5568',
+                        cadetBlue: '#5D8AA8'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto-mono': ['Roboto Mono', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-glow': 'pulseGlow 2s infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 5px rgba(255, 153, 51, 0.3)' },
+                            '50%': { boxShadow: '0 0 20px rgba(255, 153, 51, 0.6)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .tracking-in-expand{-webkit-animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both}
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF9933, #138808);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .badge-icon {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.7), rgba(26, 26, 26, 0.9));
+        }
+        
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #FF9933, #138808);
+            border-radius: 5px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .parallax-section {
+                background-attachment: scroll;
+            }
+        }
+        
+@-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+    </style>
+
+</head>
+<body>
+
+    <header class="navbar">
+      <div class="navbar-container">
+        <!-- Logo -->
+        <div class="navbar-logo">
+          <div class="logo-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h1 class="logo-text">
+            <span class="saffron">Indian</span>
+            <span class="green">Army</span>
+          
+           
+          </h1>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="navbar-menu desktop">
+          <a href="http://127.0.0.1:5500/pages/home.html" class="navbar-link" data-route="/">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="http://127.0.0.1:5500/pages/ranks.html" class="navbar-link" data-route="/ranks">
+            <i class="fas fa-star"></i>
+            <span>Ranks</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/training.html"
+            class="navbar-link"
+            data-route="/training"
+          >
+            <i class="fas fa-graduation-cap"></i>
+            <span>Training</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/fitness.html"
+            class="navbar-link"
+            data-route="/fitness"
+          >
+            <i class="fas fa-dumbbell"></i>
+            <span>Fitness</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/gallery.html"
+            class="navbar-link"
+            data-route="/gallery"
+          >
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/join-army.html"
+            class="navbar-cta"
+            data-route="/join"
+          >
+            Join Army
+          </a>
+          <a  href="http://127.0.0.1:5500/pages/login.html" class="navbar-link" data-route="/login">
+            <i class="fas fa-user"></i>
+            <span>Login</span>
+          </a>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggle" class="navbar-link">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-container">
+          <ul class="mobile-menu-list">
+            <li>
+              <a href="#home" class="mobile-menu-link" data-route="/">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/ranks.html"
+                class="mobile-menu-link"
+                data-route="/ranks"
+              >
+                <i class="fas fa-star"></i>
+                <span>Ranks & Badges</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/training.html"
+                class="mobile-menu-link"
+                data-route="/training"
+              >
+                <i class="fas fa-graduation-cap"></i>
+                <span>Training Programs</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/fitness.html"
+                class="mobile-menu-link"
+                data-route="/fitness"
+              >
+                <i class="fas fa-dumbbell"></i>
+                <span>Fitness Guide</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/gallery.html"
+                class="mobile-menu-link"
+                data-route="/gallery"
+              >
+                <i class="fas fa-images"></i>
+                <span>Gallery</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/join-army.html"
+                class="mobile-menu-cta"
+                data-route="/join"
+              >
+                Join Indian Army
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/login.html"
+                class="mobile-menu-link"
+                data-route="/login"
+              >
+                <i class="fas fa-user"></i>
+                <span>Login / Register</span>
+              </a>
+            </li>
+            <li>
+              <button id="themeToggleMobile" class="mobile-menu-link">
+                <i class="fas fa-moon"></i>
+                <span>Toggle Theme</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Training Programs Page -->
+<section class="section-padding bg-armyDark">
+    <div class="container">
+        <h1 class="section-title text-center">Elite Training Programs</h1>
+        <p class="text-center text-gray-400 max-w-3xl mx-auto mb-12">
+            Transforming civilians into warriors through rigorous and specialized training programs 
+            designed to build physical strength, mental resilience, and tactical expertise.
+        </p>
+        
+        <!-- Training Categories -->
+        <div class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Training Categories</h2>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button class="filter-button active" data-filter="all">All Programs</button>
+                <button class="filter-button" data-filter="basic">Basic Training</button>
+                <button class="filter-button" data-filter="specialized">Specialized</button>
+                <button class="filter-button" data-filter="leadership">Leadership</button>
+                <button class="filter-button" data-filter="technical">Technical</button>
+            </div>
+            
+            <div class="cards-container cards-grid-3" id="training-programs">
+                <!-- Basic Military Training -->
+                <div class="card-base" data-category="basic">
+                    <div class="card-header flex justify-between items-center">
+                        <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded">BASIC</span>
+                        <span class="text-gray-400 text-sm">26 Weeks</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="text-xl font-bold text-white mb-3">Basic Military Training</h3>
+                        <p class="text-gray-300 mb-4">
+                            Foundation training for all recruits covering weapon handling, drill, physical fitness, 
+                            and military discipline.
+                        </p>
+                        <ul class="text-sm text-gray-400 space-y-1 mb-4">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Weapons training (INSAS, AK-47)</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Field craft and battle tactics</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Map reading and navigation</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> First aid and survival skills</li>
+                        </ul>
+                        <div class="flex justify-between items-center">
+                            <span class="text-orange-500 font-semibold">All Recruits</span>
+                            <a href="#" class="text-orange-500 hover:text-orange-400 text-sm font-medium">
+                                Details <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Para Special Forces -->
+                <div class="card-base" data-category="specialized">
+                    <div class="card-header flex justify-between items-center">
+                        <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded">ELITE</span>
+                        <span class="text-gray-400 text-sm">90 Weeks</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="text-xl font-bold text-white mb-3">Para Special Forces</h3>
+                        <p class="text-gray-300 mb-4">
+                            Elite counter-terrorism and special operations training for selected personnel.
+                        </p>
+                        <ul class="text-sm text-gray-400 space-y-1 mb-4">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> HALO/HAHO parachute training</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Hostage rescue operations</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Counter-insurgency warfare</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Underwater operations</li>
+                        </ul>
+                        <div class="flex justify-between items-center">
+                            <span class="text-orange-500 font-semibold">Volunteers Only</span>
+                            <a href="#" class="text-orange-500 hover:text-orange-400 text-sm font-medium">
+                                Details <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Army Aviation -->
+                <div class="card-base" data-category="technical">
+                    <div class="card-header flex justify-between items-center">
+                        <span class="bg-green-600 text-white text-xs font-bold px-3 py-1 rounded">TECHNICAL</span>
+                        <span class="text-gray-400 text-sm">72 Weeks</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="text-xl font-bold text-white mb-3">Army Aviation Corps</h3>
+                        <p class="text-gray-300 mb-4">
+                            Comprehensive pilot training for rotary-wing aircraft operations.
+                        </p>
+                        <ul class="text-sm text-gray-400 space-y-1 mb-4">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Fixed and rotary wing training</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Night flying certification</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Combat search and rescue</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Medical evacuation operations</li>
+                        </ul>
+                        <div class="flex justify-between items-center">
+                            <span class="text-orange-500 font-semibold">Technical Entries</span>
+                            <a href="#" class="text-orange-500 hover:text-orange-400 text-sm font-medium">
+                                Details <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More training programs would continue here -->
+        </div>
+        
+        <!-- Training Institutions -->
+        <div class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Premier Training Institutions</h2>
+            
+            <div class="cards-container cards-grid-3">
+                <div class="card-base">
+                    <div class="card-body">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-graduation-cap text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Indian Military Academy</h3>
+                                <p class="text-gray-400 text-sm">Dehradun</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Premier officer training academy producing leaders for the Indian Army. 
+                            18-month rigorous training program.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Established</span>
+                                <span class="text-white">1932</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Cadets per year</span>
+                                <span class="text-white">1,650+</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Motto</span>
+                                <span class="text-white">"Veerta aur Vivek"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-base">
+                    <div class="card-body">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-shield-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Officers Training Academy</h3>
+                                <p class="text-gray-400 text-sm">Chennai & Gaya</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Training ground for Short Service Commission officers. 
+                            49-week intensive program focusing on leadership and combat skills.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Established</span>
+                                <span class="text-white">1963</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Cadets per year</span>
+                                <span class="text-white">750+</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Motto</span>
+                                <span class="text-white">"Shaurya, Gyan, Sankalp"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-base">
+                    <div class="card-body">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-mountain text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">High Altitude Warfare School</h3>
+                                <p class="text-gray-400 text-sm">Gulmarg</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Specialized training for operations in extreme mountainous terrain 
+                            and high altitude conditions.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Established</span>
+                                <span class="text-white">1948</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Altitude</span>
+                                <span class="text-white">2,730m (8,960ft)</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">Specialization</span>
+                                <span class="text-white">Mountain Warfare</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Training Schedule -->
+        <div class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Sample Training Schedule</h2>
+            
+            <div class="bg-armyGreen rounded-xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="table w-full">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Activity</th>
+                                <th>Duration</th>
+                                <th>Intensity</th>
+                                <th>Location</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-semibold">04:30</td>
+                                <td>Reveille & Morning PT</td>
+                                <td>60 min</td>
+                                <td><span class="bg-red-600 text-white px-2 py-1 rounded text-xs">High</span></td>
+                                <td>PT Ground</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">06:00</td>
+                                <td>Weapon Training</td>
+                                <td>90 min</td>
+                                <td><span class="bg-yellow-600 text-white px-2 py-1 rounded text-xs">Medium</span></td>
+                                <td>Firing Range</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">08:00</td>
+                                <td>Breakfast & Personal Time</td>
+                                <td>60 min</td>
+                                <td><span class="bg-green-600 text-white px-2 py-1 rounded text-xs">Low</span></td>
+                                <td>Mess</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">09:00</td>
+                                <td>Academic Classes</td>
+                                <td>120 min</td>
+                                <td><span class="bg-blue-600 text-white px-2 py-1 rounded text-xs">Mental</span></td>
+                                <td>Classroom</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">11:30</td>
+                                <td>Field Craft & Tactics</td>
+                                <td>90 min</td>
+                                <td><span class="bg-red-600 text-white px-2 py-1 rounded text-xs">High</span></td>
+                                <td>Training Area</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">14:00</td>
+                                <td>Obstacle Course</td>
+                                <td>60 min</td>
+                                <td><span class="bg-red-600 text-white px-2 py-1 rounded text-xs">High</span></td>
+                                <td>Confidence Course</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Training Requirements -->
+<section class="section-padding bg-armyGreen">
+    <div class="container">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Training Requirements & Eligibility</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-xl font-bold text-white mb-6">Physical Standards</h3>
+                <div class="space-y-4">
+                    <div class="bg-armyDark p-4 rounded-lg">
+                        <h4 class="font-bold text-white mb-2">Height & Weight</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Men: Minimum 157.5 cm (relaxable for某些 regions)</li>
+                            <li>• Women: Minimum 152 cm</li>
+                            <li>• Weight proportionate to height and age</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-armyDark p-4 rounded-lg">
+                        <h4 class="font-bold text-white mb-2">Physical Tests</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• 1.6 km run: 5 minutes 30 seconds (Men)</li>
+                            <li>• 800m run: 4 minutes (Women)</li>
+                            <li>• Pull-ups: 6 (Men) / Flexed arm hang: 20 seconds (Women)</li>
+                            <li>• 9 feet ditch and zig-zag balance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-xl font-bold text-white mb-6">Medical Standards</h3>
+                <div class="space-y-4">
+                    <div class="bg-armyDark p-4 rounded-lg">
+                        <h4 class="font-bold text-white mb-2">Vision Requirements</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Distant vision: 6/6 in better eye, 6/9 in worse eye</li>
+                            <li>• Near vision: N6 in better eye, N9 in worse eye</li>
+                            <li>• Myopia not to exceed -3.5D</li>
+                            <li>• No color blindness or night blindness</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-armyDark p-4 rounded-lg">
+                        <h4 class="font-bold text-white mb-2">General Health</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Free from any disease or disability</li>
+                            <li>• No history of mental illness or epilepsy</li>
+                            <li>• Hearing: Normal hearing threshold</li>
+                            <li>• No hernia, piles, or hydrocele</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-12 text-center">
+            <a href="../pages/ranks.html" class="btn btn-primary" data-page="join">
+                <i class="fas fa-file-alt mr-2"></i> Check Full Eligibility Criteria
+            </a>
+        </div>
+    </div>
+</section>
+</body>
+</html>

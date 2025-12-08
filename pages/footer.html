@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/components/cards.css">
+    <link rel="stylesheet" href="../css/components/footer.css">
+    <link rel="stylesheet" href="../css/components/gallery.css">
+    <link rel="stylesheet" href="../css/components/hero.css">
+    <link rel="stylesheet" href="../css/components/navbar.css">
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/style.css">
+        <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        armyGreen: '#3A4F41',
+                        armyOlive: '#6B8E23',
+                        armyNight: '#0B0B0B',
+                        armyDark: '#1A1A1A',
+                        indiaSaffron: '#FF9933',
+                        indiaGreen: '#138808',
+                        indiaWhite: '#FFFFFF',
+                        steelGray: '#4A5568',
+                        cadetBlue: '#5D8AA8'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto-mono': ['Roboto Mono', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-glow': 'pulseGlow 2s infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 5px rgba(255, 153, 51, 0.3)' },
+                            '50%': { boxShadow: '0 0 20px rgba(255, 153, 51, 0.6)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .tracking-in-expand{-webkit-animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both}
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF9933, #138808);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .badge-icon {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.7), rgba(26, 26, 26, 0.9));
+        }
+        
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #FF9933, #138808);
+            border-radius: 5px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .parallax-section {
+                background-attachment: scroll;
+            }
+        }
+        
+@-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+    </style>
+</head>
+<body>
+    
+    <header class="navbar">
+      <div class="navbar-container">
+        <!-- Logo -->
+        <div class="navbar-logo">
+          <div class="logo-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h1 class="logo-text">
+            <span class="saffron">Indian</span>
+            <span class="green">Army</span>
+          
+           
+          </h1>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="navbar-menu desktop">
+          <a href="http://127.0.0.1:5500/pages/home.html" class="navbar-link" data-route="/">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="http://127.0.0.1:5500/pages/ranks.html" class="navbar-link" data-route="/ranks">
+            <i class="fas fa-star"></i>
+            <span>Ranks</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/training.html"
+            class="navbar-link"
+            data-route="/training"
+          >
+            <i class="fas fa-graduation-cap"></i>
+            <span>Training</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/fitness.html"
+            class="navbar-link"
+            data-route="/fitness"
+          >
+            <i class="fas fa-dumbbell"></i>
+            <span>Fitness</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/gallery.html"
+            class="navbar-link"
+            data-route="/gallery"
+          >
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/join-army.html"
+            class="navbar-cta"
+            data-route="/join"
+          >
+            Join Army
+          </a>
+          <a  href="http://127.0.0.1:5500/pages/login.html" class="navbar-link" data-route="/login">
+            <i class="fas fa-user"></i>
+            <span>Login</span>
+          </a>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggle" class="navbar-link">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-container">
+          <ul class="mobile-menu-list">
+            <li>
+              <a href="#home" class="mobile-menu-link" data-route="/">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/ranks.html"
+                class="mobile-menu-link"
+                data-route="/ranks"
+              >
+                <i class="fas fa-star"></i>
+                <span>Ranks & Badges</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/training.html"
+                class="mobile-menu-link"
+                data-route="/training"
+              >
+                <i class="fas fa-graduation-cap"></i>
+                <span>Training Programs</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/fitness.html"
+                class="mobile-menu-link"
+                data-route="/fitness"
+              >
+                <i class="fas fa-dumbbell"></i>
+                <span>Fitness Guide</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/gallery.html"
+                class="mobile-menu-link"
+                data-route="/gallery"
+              >
+                <i class="fas fa-images"></i>
+                <span>Gallery</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/join-army.html"
+                class="mobile-menu-cta"
+                data-route="/join"
+              >
+                Join Indian Army
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/login.html"
+                class="mobile-menu-link"
+                data-route="/login"
+              >
+                <i class="fas fa-user"></i>
+                <span>Login / Register</span>
+              </a>
+            </li>
+            <li>
+              <button id="themeToggleMobile" class="mobile-menu-link">
+                <i class="fas fa-moon"></i>
+                <span>Toggle Theme</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <footer class="bg-black py-10 border-t border-gray-800">
+    <div class="container-custom">
+        <div class="grid md:grid-cols-4 gap-8 mb-10">
+            <!-- Column 1 -->
+            <div>
+                <div class="flex items-center mb-6">
+                    <div class="bg-indiaSaffron p-2 rounded-full mr-3">
+                        <i class="fas fa-shield-alt text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Indian Army Hub</h3>
+                </div>
+                <p class="text-gray-400 text-sm mb-6">
+                    Official digital platform for Indian Army training, recruitment, and awareness. Serving the nation with pride and honor.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="bg-gray-800 hover:bg-indiaSaffron text-white p-2 rounded-full transition duration-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="bg-gray-800 hover:bg-blue-400 text-white p-2 rounded-full transition duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="bg-gray-800 hover:bg-pink-600 text-white p-2 rounded-full transition duration-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="bg-gray-800 hover:bg-red-600 text-white p-2 rounded-full transition duration-300">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Column 2 -->
+            <div>
+                <h4 class="text-lg font-bold text-white mb-6">Quick Links</h4>
+                <ul class="space-y-3">
+                    <li><a href="../pages/home.html" class="text-gray-400 hover:text-indiaSaffron transition duration-300" data-route="/">Home</a></li>
+                    <li><a href="../pages/ranks.html" class="text-gray-400 hover:text-indiaSaffron transition duration-300" data-route="/ranks">Ranks & Badges</a></li>
+                    <li><a href="../pages/training.html" class="text-gray-400 hover:text-indiaSaffron transition duration-300" data-route="/training">Training Programs</a></li>
+                    <li><a href="../pages/join-army.html" class="text-gray-400 hover:text-indiaSaffron transition duration-300" data-route="/join">Join Indian Army</a></li>
+                    <li><a href="../pages/login.html" class="text-gray-400 hover:text-indiaSaffron transition duration-300" data-route="/login">Login / Register</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 3 -->
+            <div>
+                <h4 class="text-lg font-bold text-white mb-6">Resources</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-gray-400 hover:text-indiaSaffron transition duration-300">Download Forms</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-indiaSaffron transition duration-300">Training Manuals</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-indiaSaffron transition duration-300">Career Publications</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-indiaSaffron transition duration-300">Physical Standards</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-indiaSaffron transition duration-300">Medical Guidelines</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 4 -->
+            <div>
+                <h4 class="text-lg font-bold text-white mb-6">Contact Info</h4>
+                <ul class="space-y-3 text-gray-400">
+                    <li class="flex items-start">
+                        <i class="fas fa-map-marker-alt text-indiaSaffron mr-3 mt-1"></i>
+                        <span>South Block, New Delhi - 110011</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-phone-alt text-indiaSaffron mr-3"></i>
+                        <span>1800-XXX-ARMY (2769)</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-envelope text-indiaSaffron mr-3"></i>
+                        <span>info@indianarmyhub.gov.in</span>
+                    </li>
+                </ul>
+                
+                <div class="mt-6">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-indiaSaffron rounded-full mr-2"></div>
+                        <div class="w-8 h-8 bg-indiaWhite rounded-full mr-2"></div>
+                        <div class="w-8 h-8 bg-indiaGreen rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Footer -->
+        <div class="border-t border-gray-800 pt-8 text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    © 2025 Indian Army Training & Motivation Hub. All Rights Reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-indiaSaffron text-sm transition duration-300">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-indiaSaffron text-sm transition duration-300">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-indiaSaffron text-sm transition duration-300">Accessibility</a>
+                    <a href="#" class="text-gray-400 hover:text-indiaSaffron text-sm transition duration-300">Sitemap</a>
+                </div>
+            </div>
+            
+            <div class="mt-6">
+                <p class="text-gray-500 text-sm">
+                    This is an informational website. For official recruitment and announcements, please visit 
+                    <a href="https://joinindianarmy.nic.in" class="text-indiaSaffron hover:text-orange-400">joinindianarmy.nic.in</a>
+                </p>
+            </div>
+            
+            <div class="mt-6">
+                <p class="text-indiaSaffron font-bold text-xl">
+                    JAI HIND 🇮🇳
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

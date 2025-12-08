@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/components/cards.css">
+    <link rel="stylesheet" href="../css/components/footer.css">
+    <link rel="stylesheet" href="../css/components/gallery.css">
+    <link rel="stylesheet" href="../css/components/hero.css">
+    <link rel="stylesheet" href="../css/components/navbar.css">
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/style.css">
+        <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        armyGreen: '#3A4F41',
+                        armyOlive: '#6B8E23',
+                        armyNight: '#0B0B0B',
+                        armyDark: '#1A1A1A',
+                        indiaSaffron: '#FF9933',
+                        indiaGreen: '#138808',
+                        indiaWhite: '#FFFFFF',
+                        steelGray: '#4A5568',
+                        cadetBlue: '#5D8AA8'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto-mono': ['Roboto Mono', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-glow': 'pulseGlow 2s infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 5px rgba(255, 153, 51, 0.3)' },
+                            '50%': { boxShadow: '0 0 20px rgba(255, 153, 51, 0.6)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .tracking-in-expand{-webkit-animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both}
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF9933, #138808);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .badge-icon {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.7), rgba(26, 26, 26, 0.9));
+        }
+        
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #FF9933, #138808);
+            border-radius: 5px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .parallax-section {
+                background-attachment: scroll;
+            }
+        }
+        
+@-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+    </style>
+</head>
+<body>
+    
+
+    <!-- Login Page -->
+<section class="min-h-screen flex items-center justify-center bg-armyDark section-padding">
+    <div class="container">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Side - Welcome -->
+            <div>
+                <div class="mb-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-indiaSaffron to-indiaGreen rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-shield-alt text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-3xl md:text-4xl font-bold text-white">Welcome Back</h1>
+                            <p class="text-gray-400">Secure Access Portal</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-6">
+                        Access your personalized dashboard, track application status, 
+                        manage training schedules, and connect with fellow aspirants.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Track application status in real-time</span>
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Access training materials and resources</span>
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Connect with mentors and peers</span>
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Receive personalized updates</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="bg-armyGreen p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-white mb-1">15K+</div>
+                        <div class="text-gray-400 text-sm">Active Users</div>
+                    </div>
+                    <div class="bg-armyGreen p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-white mb-1">8K+</div>
+                        <div class="text-gray-400 text-sm">Applications</div>
+                    </div>
+                    <div class="bg-armyGreen p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-white mb-1">24/7</div>
+                        <div class="text-gray-400 text-sm">Support</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side - Login Form -->
+            <div class="bg-armyGreen rounded-2xl p-8">
+                <h2 class="text-2xl font-bold text-white mb-2">Sign In to Your Account</h2>
+                <p class="text-gray-400 mb-8">Enter your credentials to continue</p>
+                
+                <form id="loginForm" class="space-y-6">
+                    <div class="form-group">
+                        <label for="loginEmail" class="form-label">Email Address / Application ID</label>
+                        <div class="relative">
+                            <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <input type="text" id="loginEmail" name="email" class="form-input pl-12" 
+                                   placeholder="Enter email or application ID" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <div class="relative">
+                            <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <input type="password" id="loginPassword" name="password" class="form-input pl-12" 
+                                   placeholder="Enter your password" required>
+                            <button type="button" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <label class="flex items-center">
+                            <input type="checkbox" name="remember" class="mr-2">
+                            <span class="text-gray-300 text-sm">Remember me</span>
+                        </label>
+                        <a href="#" class="text-indiaSaffron hover:text-orange-400 text-sm">
+                            Forgot Password?
+                        </a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-full">
+                        <i class="fas fa-sign-in-alt mr-2"></i> Sign In
+                    </button>
+                    
+                    <div class="relative my-6">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-600"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-4 bg-armyGreen text-gray-400">Or continue with</span>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <button type="button" class="flex items-center justify-center gap-2 bg-gray-800 hover:bg-gray-700 text-white py-3 rounded-lg transition-colors">
+                            <i class="fab fa-google text-red-400"></i>
+                            <span>Google</span>
+                        </button>
+                        <button type="button" class="flex items-center justify-center gap-2 bg-gray-800 hover:bg-gray-700 text-white py-3 rounded-lg transition-colors">
+                            <i class="fab fa-microsoft text-blue-400"></i>
+                            <span>Microsoft</span>
+                        </button>
+                    </div>
+                    
+                    <div class="text-center mt-6">
+                        <p class="text-gray-400">
+                            Don't have an account? 
+                            <a href="#" class="text-indiaSaffron hover:text-orange-400 font-medium">
+                                Create Application
+                            </a>
+                        </p>
+                    </div>
+                </form>
+                
+                <!-- Security Notice -->
+                <div class="mt-8 p-4 bg-yellow-900 bg-opacity-30 border border-yellow-700 rounded-lg">
+                    <div class="flex items-start">
+                        <i class="fas fa-shield-alt text-yellow-400 mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-bold text-white mb-1">Security Notice</h4>
+                            <p class="text-yellow-200 text-sm">
+                                • Always access through official website<br>
+                                • Never share your credentials<br>
+                                • Log out after each session<br>
+                                • Report suspicious activity immediately
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Different User Types -->
+        <div class="mt-16">
+            <h2 class="text-2xl font-bold text-white mb-8 text-center">Login for Different Users</h2>
+            
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-armyGreen p-6 rounded-xl text-center">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-graduate text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Aspiring Candidates</h3>
+                    <p class="text-gray-300 text-sm">
+                        Track applications, download admit cards, view results
+                    </p>
+                </div>
+                
+                <div class="bg-armyGreen p-6 rounded-xl text-center">
+                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chalkboard-teacher text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Training Staff</h3>
+                    <p class="text-gray-300 text-sm">
+                        Access training materials, manage schedules, track progress
+                    </p>
+                </div>
+                
+                <div class="bg-armyGreen p-6 rounded-xl text-center">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-tie text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Recruitment Officers</h3>
+                    <p class="text-gray-300 text-sm">
+                        Manage applications, schedule interviews, process selections
+                    </p>
+                </div>
+                
+                <div class="bg-armyGreen p-6 rounded-xl text-center">
+                    <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-shield text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Administrators</h3>
+                    <p class="text-gray-300 text-sm">
+                        System management, user administration, content updates
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

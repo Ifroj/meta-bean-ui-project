@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/components/cards.css">
+    <link rel="stylesheet" href="../css/components/footer.css">
+    <link rel="stylesheet" href="../css/components/gallery.css">
+    <link rel="stylesheet" href="../css/components/hero.css">
+    <link rel="stylesheet" href="../css/components/navbar.css">
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/style.css">
+        <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        armyGreen: '#3A4F41',
+                        armyOlive: '#6B8E23',
+                        armyNight: '#0B0B0B',
+                        armyDark: '#1A1A1A',
+                        indiaSaffron: '#FF9933',
+                        indiaGreen: '#138808',
+                        indiaWhite: '#FFFFFF',
+                        steelGray: '#4A5568',
+                        cadetBlue: '#5D8AA8'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto-mono': ['Roboto Mono', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-glow': 'pulseGlow 2s infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 5px rgba(255, 153, 51, 0.3)' },
+                            '50%': { boxShadow: '0 0 20px rgba(255, 153, 51, 0.6)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .tracking-in-expand{-webkit-animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both}
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF9933, #138808);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .badge-icon {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.7), rgba(26, 26, 26, 0.9));
+        }
+        
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #FF9933, #138808);
+            border-radius: 5px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .parallax-section {
+                background-attachment: scroll;
+            }
+        }
+        
+@-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+    </style>
+</head>
+<body>
+    <header class="navbar">
+      <div class="navbar-container">
+        <!-- Logo -->
+        <div class="navbar-logo">
+          <div class="logo-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h1 class="logo-text">
+            <span class="saffron">Indian</span>
+            <span class="green">Army</span>
+          
+           
+          </h1>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="navbar-menu desktop">
+          <a href="http://127.0.0.1:5500/pages/home.html" class="navbar-link" data-route="/">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="http://127.0.0.1:5500/pages/ranks.html" class="navbar-link" data-route="/ranks">
+            <i class="fas fa-star"></i>
+            <span>Ranks</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/training.html"
+            class="navbar-link"
+            data-route="/training"
+          >
+            <i class="fas fa-graduation-cap"></i>
+            <span>Training</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/fitness.html"
+            class="navbar-link"
+            data-route="/fitness"
+          >
+            <i class="fas fa-dumbbell"></i>
+            <span>Fitness</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/gallery.html"
+            class="navbar-link"
+            data-route="/gallery"
+          >
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/join-army.html"
+            class="navbar-cta"
+            data-route="/join"
+          >
+            Join Army
+          </a>
+          <a  href="http://127.0.0.1:5500/pages/login.html" class="navbar-link" data-route="/login">
+            <i class="fas fa-user"></i>
+            <span>Login</span>
+          </a>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggle" class="navbar-link">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-container">
+          <ul class="mobile-menu-list">
+            <li>
+              <a href="#home" class="mobile-menu-link" data-route="/">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/ranks.html"
+                class="mobile-menu-link"
+                data-route="/ranks"
+              >
+                <i class="fas fa-star"></i>
+                <span>Ranks & Badges</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/training.html"
+                class="mobile-menu-link"
+                data-route="/training"
+              >
+                <i class="fas fa-graduation-cap"></i>
+                <span>Training Programs</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/fitness.html"
+                class="mobile-menu-link"
+                data-route="/fitness"
+              >
+                <i class="fas fa-dumbbell"></i>
+                <span>Fitness Guide</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/gallery.html"
+                class="mobile-menu-link"
+                data-route="/gallery"
+              >
+                <i class="fas fa-images"></i>
+                <span>Gallery</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/join-army.html"
+                class="mobile-menu-cta"
+                data-route="/join"
+              >
+                Join Indian Army
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/login.html"
+                class="mobile-menu-link"
+                data-route="/login"
+              >
+                <i class="fas fa-user"></i>
+                <span>Login / Register</span>
+              </a>
+            </li>
+            <li>
+              <button id="themeToggleMobile" class="mobile-menu-link">
+                <i class="fas fa-moon"></i>
+                <span>Toggle Theme</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <!-- Dashboard Page -->
+<section class="section-padding bg-armyDark">
+    <div class="container">
+        <!-- Dashboard Header -->
+        <div class="mb-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold text-white">Welcome, <span class="text-indiaSaffron">Rajesh Kumar</span></h1>
+                    <p class="text-gray-400">Application ID: ARMY/2024/15678</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <button class="w-10 h-10 bg-armyGreen rounded-full flex items-center justify-center">
+                            <i class="fas fa-bell text-gray-300"></i>
+                        </button>
+                        <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-white text-xs flex items-center justify-center">3</span>
+                    </div>
+                    <div class="w-10 h-10 bg-gradient-to-br from-indiaSaffron to-indiaGreen rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold">RK</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-armyGreen p-4 rounded-xl">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-400 text-sm">Application Status</p>
+                        <p class="text-white text-lg font-bold">Under Review</p>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-500 bg-opacity-20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-file-alt text-blue-400"></i>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                        <div class="bg-blue-500 h-2 rounded-full" style="width: 65%"></div>
+                    </div>
+                    <p class="text-gray-400 text-xs mt-1">65% Complete</p>
+                </div>
+            </div>
+            
+            <div class="bg-armyGreen p-4 rounded-xl">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-400 text-sm">Tests Completed</p>
+                        <p class="text-white text-lg font-bold">3/5</p>
+                    </div>
+                    <div class="w-12 h-12 bg-green-500 bg-opacity-20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-check-circle text-green-400"></i>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 60%"></div>
+                    </div>
+                    <p class="text-gray-400 text-xs mt-1">60% Tests Done</p>
+                </div>
+            </div>
+            
+            <div class="bg-armyGreen p-4 rounded-xl">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-400 text-sm">Days to Next Test</p>
+                        <p class="text-white text-lg font-bold">14</p>
+                    </div>
+                    <div class="w-12 h-12 bg-yellow-500 bg-opacity-20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-calendar-day text-yellow-400"></i>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <p class="text-gray-400 text-xs">Physical Test on Jan 15, 2025</p>
+                </div>
+            </div>
+            
+            <div class="bg-armyGreen p-4 rounded-xl">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-400 text-sm">Overall Score</p>
+                        <p class="text-white text-lg font-bold">78%</p>
+                    </div>
+                    <div class="w-12 h-12 bg-purple-500 bg-opacity-20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-chart-line text-purple-400"></i>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <p class="text-gray-400 text-xs">Above Average</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Dashboard Content -->
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Left Column -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Application Progress -->
+                <div class="bg-armyGreen rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-bold text-white">Application Progress</h2>
+                        <a href="#" class="text-indiaSaffron hover:text-orange-400 text-sm font-medium">
+                            View Details <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-medium">Registration</span>
+                                <span class="text-green-400 font-bold">Completed ✓</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <p class="text-gray-400 text-xs mt-1">Completed on: Dec 1, 2024</p>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-medium">Document Verification</span>
+                                <span class="text-green-400 font-bold">Completed ✓</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <p class="text-gray-400 text-xs mt-1">Verified on: Dec 5, 2024</p>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-medium">Written Test</span>
+                                <span class="text-yellow-400 font-bold">Scheduled</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 65%"></div>
+                            </div>
+                            <p class="text-gray-400 text-xs mt-1">Scheduled for: Jan 10, 2025</p>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-medium">Physical Test</span>
+                                <span class="text-blue-400 font-bold">Upcoming</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 30%"></div>
+                            </div>
+                            <p class="text-gray-400 text-xs mt-1">Scheduled for: Jan 15, 2025</p>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-medium">Medical Examination</span>
+                                <span class="text-gray-400 font-bold">Pending</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-gray-500 h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                            <p class="text-gray-400 text-xs mt-1">Will be scheduled after physical test</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Upcoming Events -->
+                <div class="bg-armyGreen rounded-xl p-6">
+                    <h2 class="text-xl font-bold text-white mb-6">Upcoming Events</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center p-4 bg-armyDark rounded-lg">
+                            <div class="w-12 h-12 bg-red-500 rounded-lg flex flex-col items-center justify-center mr-4">
+                                <span class="text-white font-bold text-lg">10</span>
+                                <span class="text-white text-xs">JAN</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-white">Written Examination</h4>
+                                <p class="text-gray-300 text-sm">Common Entrance Examination (CEE)</p>
+                                <p class="text-gray-400 text-xs mt-1">
+                                    <i class="fas fa-clock mr-1"></i> 09:00 AM - 12:00 PM
+                                    <i class="fas fa-map-marker-alt mx-2"></i> Delhi Cantt Exam Center
+                                </p>
+                            </div>
+                            <a href="#" class="text-indiaSaffron hover:text-orange-400">
+                                <i class="fas fa-download"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="flex items-center p-4 bg-armyDark rounded-lg">
+                            <div class="w-12 h-12 bg-green-500 rounded-lg flex flex-col items-center justify-center mr-4">
+                                <span class="text-white font-bold text-lg">15</span>
+                                <span class="text-white text-xs">JAN</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-white">Physical Fitness Test</h4>
+                                <p class="text-gray-300 text-sm">1.6km Run, Pull-ups, & Obstacle Course</p>
+                                <p class="text-gray-400 text-xs mt-1">
+                                    <i class="fas fa-clock mr-1"></i> 06:00 AM onwards
+                                    <i class="fas fa-map-marker-alt mx-2"></i> Army Ground, Delhi
+                                </p>
+                            </div>
+                            <a href="#" class="text-indiaSaffron hover:text-orange-400">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="flex items-center p-4 bg-armyDark rounded-lg">
+                            <div class="w-12 h-12 bg-blue-500 rounded-lg flex flex-col items-center justify-center mr-4">
+                                <span class="text-white font-bold text-lg">20</span>
+                                <span class="text-white text-xs">JAN</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-white">Training Webinar</h4>
+                                <p class="text-gray-300 text-sm">Preparation Tips for SSB Interview</p>
+                                <p class="text-gray-400 text-xs mt-1">
+                                    <i class="fas fa-clock mr-1"></i> 04:00 PM - 05:30 PM
+                                    <i class="fas fa-video mx-2"></i> Online (Zoom)
+                                </p>
+                            </div>
+                            <a href="#" class="text-indiaSaffron hover:text-orange-400">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column -->
+            <div class="space-y-8">
+                <!-- Profile Summary -->
+                <div class="bg-armyGreen rounded-xl p-6">
+                    <h2 class="text-xl font-bold text-white mb-6">Profile Summary</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gradient-to-br from-indiaSaffron to-orange-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Rajesh Kumar</h4>
+                                <p class="text-gray-300 text-sm">Age: 21 | Height: 175cm</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-armyDark p-3 rounded-lg">
+                                <p class="text-gray-400 text-xs">Applied For</p>
+                                <p class="text-white font-medium">Agniveer (GD)</p>
+                            </div>
+                            <div class="bg-armyDark p-3 rounded-lg">
+                                <p class="text-gray-400 text-xs">Category</p>
+                                <p class="text-white font-medium">General</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-armyDark p-4 rounded-lg">
+                            <p class="text-gray-400 text-xs mb-2">Educational Qualification</p>
+                            <p class="text-white font-medium">B.Sc. (Computer Science)</p>
+                            <p class="text-gray-300 text-sm">Delhi University - 78%</p>
+                        </div>
+                        
+                        <div class="bg-armyDark p-4 rounded-lg">
+                            <p class="text-gray-400 text-xs mb-2">Contact Information</p>
+                            <p class="text-white text-sm">
+                                <i class="fas fa-phone mr-2"></i> +91 98765-43210
+                            </p>
+                            <p class="text-white text-sm">
+                                <i class="fas fa-envelope mr-2"></i> rajesh.k@example.com
+                            </p>
+                        </div>
+                        
+                        <a href="#" class="inline-block w-full text-center btn btn-outline border-white text-white hover:bg-white hover:text-armyDark">
+                            <i class="fas fa-edit mr-2"></i> Edit Profile
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="bg-armyGreen rounded-xl p-6">
+                    <h2 class="text-xl font-bold text-white mb-6">Quick Actions</h2>
+                    
+                    <div class="grid grid-cols-2 gap-3">
+                        <a href="#" class="bg-armyDark p-4 rounded-lg flex flex-col items-center justify-center hover:bg-gray-800 transition-colors">
+                            <i class="fas fa-file-download text-indiaSaffron text-xl mb-2"></i>
+                            <span class="text-white text-sm text-center">Download Admit Card</span>
+                        </a>
+                        
+                        <a href="#" class="bg-armyDark p-4 rounded-lg flex flex-col items-center justify-center hover:bg-gray-800 transition-colors">
+                            <i class="fas fa-book text-indiaSaffron text-xl mb-2"></i>
+                            <span class="text-white text-sm text-center">Study Material</span>
+                        </a>
+                        
+                        <a href="#" class="bg-armyDark p-4 rounded-lg flex flex-col items-center justify-center hover:bg-gray-800 transition-colors">
+                            <i class="fas fa-chart-bar text-indiaSaffron text-xl mb-2"></i>
+                            <span class="text-white text-sm text-center">Performance Report</span>
+                        </a>
+                        
+                        <a href="#" class="bg-armyDark p-4 rounded-lg flex flex-col items-center justify-center hover:bg-gray-800 transition-colors">
+                            <i class="fas fa-question-circle text-indiaSaffron text-xl mb-2"></i>
+                            <span class="text-white text-sm text-center">Help Center</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Notifications -->
+                <div class="bg-armyGreen rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-bold text-white">Notifications</h2>
+                        <span class="w-6 h-6 bg-red-500 rounded-full text-white text-xs flex items-center justify-center">3</span>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start p-3 bg-armyDark rounded-lg">
+                            <i class="fas fa-info-circle text-blue-400 mt-1 mr-3"></i>
+                            <div>
+                                <p class="text-white text-sm">Admit card for written test is available for download</p>
+                                <p class="text-gray-400 text-xs mt-1">2 hours ago</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start p-3 bg-armyDark rounded-lg">
+                            <i class="fas fa-exclamation-triangle text-yellow-400 mt-1 mr-3"></i>
+                            <div>
+                                <p class="text-white text-sm">Document verification pending - Upload Class 10 marksheet</p>
+                                <p class="text-gray-400 text-xs mt-1">1 day ago</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start p-3 bg-armyDark rounded-lg">
+                            <i class="fas fa-calendar-check text-green-400 mt-1 mr-3"></i>
+                            <div>
+                                <p class="text-white text-sm">Training webinar scheduled for January 20, 2025</p>
+                                <p class="text-gray-400 text-xs mt-1">2 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="inline-block w-full text-center mt-4 text-indiaSaffron hover:text-orange-400 text-sm font-medium">
+                        View All Notifications <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Training Progress -->
+<section class="section-padding bg-armyGreen">
+    <div class="container">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Training Progress</h2>
+        
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-armyDark p-6 rounded-xl">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mr-4">
+                        <i class="fas fa-running text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Physical Training</h3>
+                        <p class="text-gray-400 text-sm">Current Level: Intermediate</p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-gray-300">Running (1.6km)</span>
+                            <span class="text-white font-medium">5:45 min</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-2">
+                            <div class="bg-red-500 h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-gray-300">Pull-ups</span>
+                            <span class="text-white font-medium">8 reps</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-2">
+                            <div class="bg-red-500 h-2 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-armyDark p-6 rounded-xl">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                        <i class="fas fa-book text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Academic Preparation</h3>
+                        <p class="text-gray-400 text-sm">Current Score: 72%</p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-gray-300">General Knowledge</span>
+                            <span class="text-white font-medium">78%</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-2">
+                            <div class="bg-blue-500 h-2 rounded-full" style="width: 78%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-gray-300">Mathematics</span>
+                            <span class="text-white font-medium">68%</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-2">
+                            <div class="bg-blue-500 h-2 rounded-full" style="width: 68%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-armyDark p-6 rounded-xl">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                        <i class="fas fa-brain text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Psychological Tests</h3>
+                        <p class="text-gray-400 text-sm">Ready for SSB</p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-gray-300">Personality Test</span>
+                            <span class="text-white font-medium">Good</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-2">
+                            <div class="bg-green-500 h-2 rounded-full" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-gray-300">Group Discussion</span>
+                            <span class="text-white font-medium">Average</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-2">
+                            <div class="bg-green-500 h-2 rounded-full" style="width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Training Recommendations -->
+        <div class="bg-gradient-to-r from-indiaSaffron to-indiaGreen rounded-xl p-8">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Personalized Training Plan</h3>
+                    <p class="text-white mb-6">
+                        Based on your current progress, we recommend focusing on improving 
+                        your running time and group discussion skills for better SSB performance.
+                    </p>
+                    <a href="#training" class="btn btn-primary bg-white text-armyDark hover:bg-gray-100" data-page="training">
+                        <i class="fas fa-dumbbell mr-2"></i> View Training Plan
+                    </a>
+                </div>
+                
+                <div>
+                    <div class="bg-white bg-opacity-10 p-6 rounded-xl">
+                        <h4 class="text-xl font-bold text-white mb-4">Weekly Focus Areas</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-white">
+                                <i class="fas fa-running mr-3"></i>
+                                <span>Daily 5km running practice</span>
+                            </li>
+                            <li class="flex items-center text-white">
+                                <i class="fas fa-users mr-3"></i>
+                                <span>3 group discussion sessions</span>
+                            </li>
+                            <li class="flex items-center text-white">
+                                <i class="fas fa-dumbbell mr-3"></i>
+                                <span>Strength training 4 times/week</span>
+                            </li>
+                            <li class="flex items-center text-white">
+                                <i class="fas fa-book mr-3"></i>
+                                <span>Current affairs revision daily</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

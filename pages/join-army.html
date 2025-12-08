@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/components/cards.css">
+    <link rel="stylesheet" href="../css/components/footer.css">
+    <link rel="stylesheet" href="../css/components/gallery.css">
+    <link rel="stylesheet" href="../css/components/hero.css">
+    <link rel="stylesheet" href="../css/components/navbar.css">
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/style.css">
+        <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        armyGreen: '#3A4F41',
+                        armyOlive: '#6B8E23',
+                        armyNight: '#0B0B0B',
+                        armyDark: '#1A1A1A',
+                        indiaSaffron: '#FF9933',
+                        indiaGreen: '#138808',
+                        indiaWhite: '#FFFFFF',
+                        steelGray: '#4A5568',
+                        cadetBlue: '#5D8AA8'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto-mono': ['Roboto Mono', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-glow': 'pulseGlow 2s infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 5px rgba(255, 153, 51, 0.3)' },
+                            '50%': { boxShadow: '0 0 20px rgba(255, 153, 51, 0.6)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .tracking-in-expand{-webkit-animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both}
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF9933, #138808);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .badge-icon {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.7), rgba(26, 26, 26, 0.9));
+        }
+        
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #FF9933, #138808);
+            border-radius: 5px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .parallax-section {
+                background-attachment: scroll;
+            }
+        }
+        
+@-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+    </style>
+</head>
+<body>
+    
+    <header class="navbar">
+      <div class="navbar-container">
+        <!-- Logo -->
+        <div class="navbar-logo">
+          <div class="logo-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h1 class="logo-text">
+            <span class="saffron">Indian</span>
+            <span class="green">Army</span>
+          
+           
+          </h1>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="navbar-menu desktop">
+          <a href="http://127.0.0.1:5500/pages/home.html" class="navbar-link" data-route="/">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="http://127.0.0.1:5500/pages/ranks.html" class="navbar-link" data-route="/ranks">
+            <i class="fas fa-star"></i>
+            <span>Ranks</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/training.html"
+            class="navbar-link"
+            data-route="/training"
+          >
+            <i class="fas fa-graduation-cap"></i>
+            <span>Training</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/fitness.html"
+            class="navbar-link"
+            data-route="/fitness"
+          >
+            <i class="fas fa-dumbbell"></i>
+            <span>Fitness</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/gallery.html"
+            class="navbar-link"
+            data-route="/gallery"
+          >
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/join-army.html"
+            class="navbar-cta"
+            data-route="/join"
+          >
+            Join Army
+          </a>
+          <a  href="http://127.0.0.1:5500/pages/login.html" class="navbar-link" data-route="/login">
+            <i class="fas fa-user"></i>
+            <span>Login</span>
+          </a>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggle" class="navbar-link">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-container">
+          <ul class="mobile-menu-list">
+            <li>
+              <a href="#home" class="mobile-menu-link" data-route="/">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/ranks.html"
+                class="mobile-menu-link"
+                data-route="/ranks"
+              >
+                <i class="fas fa-star"></i>
+                <span>Ranks & Badges</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/training.html"
+                class="mobile-menu-link"
+                data-route="/training"
+              >
+                <i class="fas fa-graduation-cap"></i>
+                <span>Training Programs</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/fitness.html"
+                class="mobile-menu-link"
+                data-route="/fitness"
+              >
+                <i class="fas fa-dumbbell"></i>
+                <span>Fitness Guide</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/gallery.html"
+                class="mobile-menu-link"
+                data-route="/gallery"
+              >
+                <i class="fas fa-images"></i>
+                <span>Gallery</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/join-army.html"
+                class="mobile-menu-cta"
+                data-route="/join"
+              >
+                Join Indian Army
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/login.html"
+                class="mobile-menu-link"
+                data-route="/login"
+              >
+                <i class="fas fa-user"></i>
+                <span>Login / Register</span>
+              </a>
+            </li>
+            <li>
+              <button id="themeToggleMobile" class="mobile-menu-link">
+                <i class="fas fa-moon"></i>
+                <span>Toggle Theme</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Join Indian Army Page -->
+<section class="section-padding bg-armyDark">
+    <div class="container">
+        <h1 class="section-title text-center">Join Indian Army</h1>
+        <p class="text-center text-gray-400 max-w-3xl mx-auto mb-12">
+            Begin your journey to serve the nation with honor and pride. Explore various entry schemes 
+            and find the perfect path for your career in the Indian Army.
+        </p>
+        
+        <!-- Entry Schemes -->
+        <div class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Entry Schemes</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-armyGreen p-6 rounded-xl">
+                    <div class="w-16 h-16 bg-gradient-to-br from-indiaSaffron to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-graduate text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white text-center mb-3">NCC Special Entry</h3>
+                    <p class="text-gray-300 text-sm text-center">
+                        For NCC 'C' certificate holders. Direct entry as commissioned officers.
+                    </p>
+                    <div class="mt-4 text-center">
+                        <a href="#" class="inline-block text-indiaSaffron hover:text-orange-400 font-medium">
+                            View Details <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-armyGreen p-6 rounded-xl">
+                    <div class="w-16 h-16 bg-gradient-to-br from-indiaGreen to-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-md text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white text-center mb-3">Technical Entries</h3>
+                    <p class="text-gray-300 text-sm text-center">
+                        Engineering graduates for technical branches like Signals, Engineers, etc.
+                    </p>
+                    <div class="mt-4 text-center">
+                        <a href="#" class="inline-block text-indiaSaffron hover:text-orange-400 font-medium">
+                            View Details <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-armyGreen p-6 rounded-xl">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white text-center mb-3">Soldier Entries</h3>
+                    <p class="text-gray-300 text-sm text-center">
+                        Direct recruitment as soldiers through various rallies and examinations.
+                    </p>
+                    <div class="mt-4 text-center">
+                        <a href="#" class="inline-block text-indiaSaffron hover:text-orange-400 font-medium">
+                            View Details <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Agniveer Scheme -->
+        <div class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Agniveer Scheme</h2>
+            
+            <div class="bg-gradient-to-r from-indiaSaffron via-orange-500 to-red-600 rounded-xl p-8">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Tour of Duty: Agniveer</h3>
+                        <p class="text-white mb-6">
+                            Transformative 4-year service scheme for youth to serve as Agniveers. 
+                            Opportunity to learn, earn, and contribute to national security.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-white">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>4-year service period</span>
+                            </li>
+                            <li class="flex items-center text-white">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Attractive monthly package</span>
+                            </li>
+                            <li class="flex items-center text-white">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Seva Nidhi package after completion</span>
+                            </li>
+                            <li class="flex items-center text-white">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>25% retention for regular cadre</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-10 p-6 rounded-xl">
+                        <h4 class="text-xl font-bold text-white mb-4">Eligibility Criteria</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-white font-semibold">Age Limit</p>
+                                <p class="text-gray-200">17.5 - 21 years (relaxable for某些 categories)</p>
+                            </div>
+                            <div>
+                                <p class="text-white font-semibold">Educational Qualification</p>
+                                <p class="text-gray-200">Class 10th/Matric with 45% marks in aggregate</p>
+                            </div>
+                            <div>
+                                <p class="text-white font-semibold">Physical Standards</p>
+                                <p class="text-gray-200">As per Indian Army requirements</p>
+                            </div>
+                        </div>
+                        <a href="#" class="inline-block mt-6 btn btn-primary bg-white text-armyDark hover:bg-gray-100">
+                            Apply Now for Agniveer
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Application Process -->
+        <div class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Application Process</h2>
+            
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 md:w-2 bg-gradient-to-b from-indiaSaffron to-indiaGreen transform md:-translate-x-1/2"></div>
+                
+                <!-- Steps -->
+                <div class="space-y-12 relative">
+                    <!-- Step 1 -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="w-16 h-16 bg-indiaSaffron rounded-full flex items-center justify-center z-10 mb-4 md:mb-0">
+                            <span class="text-white text-xl font-bold">1</span>
+                        </div>
+                        <div class="md:ml-8 md:w-1/2">
+                            <div class="bg-armyGreen p-6 rounded-xl">
+                                <h3 class="text-xl font-bold text-white mb-3">Online Registration</h3>
+                                <p class="text-gray-300 mb-4">
+                                    Register on the official Indian Army recruitment website. 
+                                    Fill in personal, educational, and contact details.
+                                </p>
+                                <a href="#" class="text-indiaSaffron hover:text-orange-400 font-medium">
+                                    Register Now <i class="fas fa-external-link-alt ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:order-2 w-16 h-16 bg-indiaGreen rounded-full flex items-center justify-center z-10 mb-4 md:mb-0">
+                            <span class="text-white text-xl font-bold">2</span>
+                        </div>
+                        <div class="md:mr-8 md:w-1/2 md:text-right md:order-1">
+                            <div class="bg-armyGreen p-6 rounded-xl">
+                                <h3 class="text-xl font-bold text-white mb-3">Physical & Medical Tests</h3>
+                                <p class="text-gray-300 mb-4">
+                                    Attend recruitment rally for physical fitness tests, 
+                                    medical examination, and document verification.
+                                </p>
+                                <a href="../pages/fitness.html" class="text-indiaSaffron hover:text-orange-400 font-medium" data-page="fitness">
+                                    View Physical Standards <i class="fas fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="w-16 h-16 bg-indiaSaffron rounded-full flex items-center justify-center z-10 mb-4 md:mb-0">
+                            <span class="text-white text-xl font-bold">3</span>
+                        </div>
+                        <div class="md:ml-8 md:w-1/2">
+                            <div class="bg-armyGreen p-6 rounded-xl">
+                                <h3 class="text-xl font-bold text-white mb-3">Written Examination</h3>
+                                <p class="text-gray-300 mb-4">
+                                    Clear the Common Entrance Examination (CEE) covering 
+                                    general knowledge, mathematics, and reasoning.
+                                </p>
+                                <a href="#" class="text-indiaSaffron hover:text-orange-400 font-medium">
+                                    Download Syllabus <i class="fas fa-download ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:order-2 w-16 h-16 bg-indiaGreen rounded-full flex items-center justify-center z-10 mb-4 md:mb-0">
+                            <span class="text-white text-xl font-bold">4</span>
+                        </div>
+                        <div class="md:mr-8 md:w-1/2 md:text-right md:order-1">
+                            <div class="bg-armyGreen p-6 rounded-xl">
+                                <h3 class="text-xl font-bold text-white mb-3">Training & Commission</h3>
+                                <p class="text-gray-300 mb-4">
+                                    Selected candidates undergo training at respective training academies 
+                                    before being commissioned into the Indian Army.
+                                </p>
+                                <a href="../pages/training.html" class="text-indiaSaffron hover:text-orange-400 font-medium" data-page="training">
+                                    Explore Training <i class="fas fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Application Form -->
+<section class="section-padding bg-armyGreen">
+    <div class="container">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Start Your Application</h2>
+        
+        <div class="max-w-3xl mx-auto bg-armyDark rounded-xl p-8">
+            <form id="joinForm" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="form-group">
+                        <label for="appFirstName" class="form-label">First Name *</label>
+                        <input type="text" id="appFirstName" name="firstName" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appLastName" class="form-label">Last Name *</label>
+                        <input type="text" id="appLastName" name="lastName" class="form-input" required>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="form-group">
+                        <label for="appEmail" class="form-label">Email Address *</label>
+                        <input type="email" id="appEmail" name="email" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appPhone" class="form-label">Phone Number *</label>
+                        <input type="tel" id="appPhone" name="phone" class="form-input" required>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="form-group">
+                        <label for="appDob" class="form-label">Date of Birth *</label>
+                        <input type="date" id="appDob" name="dob" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appGender" class="form-label">Gender *</label>
+                        <select id="appGender" name="gender" class="form-input" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="appEducation" class="form-label">Highest Educational Qualification *</label>
+                    <select id="appEducation" name="education" class="form-input" required>
+                        <option value="">Select Qualification</option>
+                        <option value="10th">10th Pass</option>
+                        <option value="12th">12th Pass</option>
+                        <option value="diploma">Diploma</option>
+                        <option value="graduate">Graduate</option>
+                        <option value="postgraduate">Post Graduate</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="appScheme" class="form-label">Preferred Entry Scheme *</label>
+                    <select id="appScheme" name="scheme" class="form-input" required>
+                        <option value="">Select Scheme</option>
+                        <option value="agniveer">Agniveer (Soldier)</option>
+                        <option value="technical">Technical Entry</option>
+                        <option value="ncc">NCC Special Entry</option>
+                        <option value="jco">JCO/OR Entry</option>
+                        <option value="women">Women Entry</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="appState" class="form-label">State of Domicile *</label>
+                    <select id="appState" name="state" class="form-input" required>
+                        <option value="">Select State</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="maharashtra">Maharashtra</option>
+                        <option value="tamilnadu">Tamil Nadu</option>
+                        <option value="westbengal">West Bengal</option>
+                        <option value="karnataka">Karnataka</option>
+                        <option value="uttarpradesh">Uttar Pradesh</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="flex items-start">
+                        <input type="checkbox" name="terms" class="mr-2 mt-1" required>
+                        <span class="text-gray-300 text-sm">
+                            I hereby declare that all information provided is true and correct to the best of my knowledge. 
+                            I understand that any false information may lead to disqualification.
+                        </span>
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <label class="flex items-start">
+                        <input type="checkbox" name="privacy" class="mr-2 mt-1" required>
+                        <span class="text-gray-300 text-sm">
+                            I agree to the <a href="#" class="text-indiaSaffron hover:text-orange-400">Privacy Policy</a> and 
+                            <a href="#" class="text-indiaSaffron hover:text-orange-400">Terms of Service</a>
+                        </span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-full">
+                    <i class="fas fa-paper-plane mr-2"></i> Submit Application
+                </button>
+            </form>
+            
+            <p class="text-gray-400 text-sm mt-6">
+                * All fields are mandatory. You will receive an application ID via email and SMS.
+                Keep it for future reference.
+            </p>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

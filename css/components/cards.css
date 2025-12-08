@@ -1,0 +1,352 @@
+/* Cards Container */
+.cards-container {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.cards-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.cards-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.cards-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Card Base */
+.card-base {
+    background-color: #3A4F41;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-base:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 153, 51, 0.3);
+}
+
+/* Feature Card */
+.feature-card {
+    padding: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.feature-card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: #FFFFFF;
+}
+
+.feature-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+}
+
+.feature-card-description {
+    color: #D1D5DB;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.feature-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #FF9933;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 1.5rem;
+    transition: gap 0.3s ease;
+}
+
+.feature-card-link:hover {
+    gap: 0.75rem;
+}
+
+/* Service Card */
+.service-card {
+    padding: 2rem;
+    text-align: center;
+}
+
+.service-card-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #FF9933, #138808);
+}
+
+.service-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+}
+
+.service-card-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.service-card-list li {
+    color: #D1D5DB;
+    padding: 0.25rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.service-card-list i {
+    color: #138808;
+    font-size: 0.875rem;
+}
+
+/* Team Card */
+.team-card {
+    text-align: center;
+    padding: 2rem;
+}
+
+.team-card-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    overflow: hidden;
+    border: 3px solid #FF9933;
+}
+
+.team-card-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-card-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+}
+
+.team-card-role {
+    color: #FF9933;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.team-card-description {
+    color: #D1D5DB;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.team-card-social {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.team-card-social a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #4A5568;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.team-card-social a:hover {
+    background-color: #FF9933;
+    transform: translateY(-2px);
+}
+
+/* Stats Card */
+.stats-card {
+    text-align: center;
+    padding: 2rem;
+}
+
+.stats-card-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #FF9933;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.stats-card-label {
+    color: #D1D5DB;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Testimonial Card */
+.testimonial-card {
+    padding: 2rem;
+    position: relative;
+}
+
+.testimonial-card-quote {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: #FF9933;
+    opacity: 0.3;
+    font-size: 3rem;
+    font-family: serif;
+}
+
+.testimonial-card-content {
+    color: #D1D5DB;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    padding-top: 2rem;
+}
+
+.testimonial-card-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.testimonial-card-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.testimonial-card-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.testimonial-card-info h4 {
+    color: #FFFFFF;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.testimonial-card-info p {
+    color: #9CA3AF;
+    font-size: 0.875rem;
+}
+
+/* Pricing Card */
+.pricing-card {
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.pricing-card-popular {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #FF9933, #138808);
+    color: #FFFFFF;
+    padding: 0.25rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.pricing-card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+}
+
+.pricing-card-price {
+    margin-bottom: 1.5rem;
+}
+
+.pricing-card-amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1;
+}
+
+.pricing-card-period {
+    color: #9CA3AF;
+    font-size: 0.875rem;
+}
+
+.pricing-card-features {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.pricing-card-features li {
+    color: #D1D5DB;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pricing-card-features li:last-child {
+    border-bottom: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .cards-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .cards-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .cards-grid-2,
+    .cards-grid-3,
+    .cards-grid-4 {
+        grid-template-columns: 1fr;
+    }
+    
+    .feature-card,
+    .service-card,
+    .team-card,
+    .stats-card,
+    .testimonial-card,
+    .pricing-card {
+        padding: 1.5rem;
+    }
+}

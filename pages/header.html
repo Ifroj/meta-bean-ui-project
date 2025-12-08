@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/components/cards.css">
+    <link rel="stylesheet" href="../css/components/footer.css">
+    <link rel="stylesheet" href="../css/components/gallery.css">
+    <link rel="stylesheet" href="../css/components/hero.css">
+    <link rel="stylesheet" href="../css/components/navbar.css">
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+        <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        armyGreen: '#3A4F41',
+                        armyOlive: '#6B8E23',
+                        armyNight: '#0B0B0B',
+                        armyDark: '#1A1A1A',
+                        indiaSaffron: '#FF9933',
+                        indiaGreen: '#138808',
+                        indiaWhite: '#FFFFFF',
+                        steelGray: '#4A5568',
+                        cadetBlue: '#5D8AA8'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto-mono': ['Roboto Mono', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-glow': 'pulseGlow 2s infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 5px rgba(255, 153, 51, 0.3)' },
+                            '50%': { boxShadow: '0 0 20px rgba(255, 153, 51, 0.6)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .tracking-in-expand{-webkit-animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both}
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF9933, #138808);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .badge-icon {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.7), rgba(26, 26, 26, 0.9));
+        }
+        
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #FF9933, #138808);
+            border-radius: 5px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .parallax-section {
+                background-attachment: scroll;
+            }
+        }
+        
+@-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+    </style>
+</head>
+<body>
+    
+
+    <header class="navbar">
+    <div class="navbar-container">
+        <!-- Logo -->
+        <div class="navbar-logo">
+            <div class="logo-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h1 class="logo-text">
+                <span class="saffron">Indian</span>
+                <span class="green">Army</span>
+               
+                 <!-- -->
+            </h1>
+        </div>
+        
+        <!-- Desktop Menu -->
+        <div class="navbar-menu desktop">
+            <a href="../pages/home.html" class="navbar-link" data-route="/">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="../pages/ranks.html" class="navbar-link" data-route="/ranks">
+                <i class="fas fa-star"></i>
+                <span>Ranks</span>
+            </a>
+            <a href="../pages/training.html" class="navbar-link" data-route="/training">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Training</span>
+            </a>
+            <a href="../pages/fitness.html" class="navbar-link" data-route="/fitness">
+                <i class="fas fa-dumbbell"></i>
+                <span>Fitness</span>
+            </a>
+            <a href="../pages/gallery.html" class="navbar-link" data-route="/gallery">
+                <i class="fas fa-images"></i>
+                <span>Gallery</span>
+            </a>
+            
+        </div>
+        
+        <div>
+            <a href="../pages/join-army.html" class="navbar-cta" data-route="/join">
+                Join Army
+            </a>
+            <a href="../pages/login.html" class="navbar-link" data-route="/login">
+                <i class="fas fa-user"></i>
+                <span>Login</span>
+            </a>
+            
+            <!-- Theme Toggle -->
+            <button id="themeToggle" class="navbar-link">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-container">
+            <ul class="mobile-menu-list">
+                <li>
+                    <a href="../pages/home.html" class="mobile-menu-link" data-route="/">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/ranks.html" class="mobile-menu-link" data-route="/ranks">
+                        <i class="fas fa-star"></i>
+                        <span>Ranks & Badges</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/training.html" class="mobile-menu-link" data-route="/training">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Training Programs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/fitness.html" class="mobile-menu-link" data-route="/fitness">
+                        <i class="fas fa-dumbbell"></i>
+                        <span>Fitness Guide</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/gallery.html" class="mobile-menu-link" data-route="/gallery">
+                        <i class="fas fa-images"></i>
+                        <span>Gallery</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/join-army.html" class="mobile-menu-cta" data-route="/join">
+                        Join Indian Army
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/login.html" class="mobile-menu-link" data-route="/login">
+                        <i class="fas fa-user"></i>
+                        <span>Login / Register</span>
+                    </a>
+                </li>
+                <li>
+                    <button id="themeToggleMobile" class="mobile-menu-link">
+                        <i class="fas fa-moon"></i>
+                        <span>Toggle Theme</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<!-- Back to Top Button -->
+<button id="backToTop" class="fixed bottom-8 right-8 bg-indiaSaffron text-white p-3 rounded-full shadow-lg hover:bg-orange-600 transition hidden z-40">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+</body>
+</html>

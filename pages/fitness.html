@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="../css/components/cards.css">
+    <link rel="stylesheet" href="../css/components/footer.css">
+    <link rel="stylesheet" href="../css/components/gallery.css">
+    <link rel="stylesheet" href="../css/components/hero.css">
+    <link rel="stylesheet" href="../css/components/navbar.css">
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+        <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        armyGreen: '#3A4F41',
+                        armyOlive: '#6B8E23',
+                        armyNight: '#0B0B0B',
+                        armyDark: '#1A1A1A',
+                        indiaSaffron: '#FF9933',
+                        indiaGreen: '#138808',
+                        indiaWhite: '#FFFFFF',
+                        steelGray: '#4A5568',
+                        cadetBlue: '#5D8AA8'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto-mono': ['Roboto Mono', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-glow': 'pulseGlow 2s infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 5px rgba(255, 153, 51, 0.3)' },
+                            '50%': { boxShadow: '0 0 20px rgba(255, 153, 51, 0.6)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .tracking-in-expand{-webkit-animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both}
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF9933, #138808);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .badge-icon {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.7), rgba(26, 26, 26, 0.9));
+        }
+        
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #FF9933, #138808);
+            border-radius: 5px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .parallax-section {
+                background-attachment: scroll;
+            }
+        }
+        
+@-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+    </style>
+
+</head>
+<body>
+    
+    <header class="navbar">
+      <div class="navbar-container">
+        <!-- Logo -->
+        <div class="navbar-logo">
+          <div class="logo-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h1 class="logo-text">
+            <span class="saffron">Indian</span>
+            <span class="green">Army</span>
+          
+           
+          </h1>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="navbar-menu desktop">
+          <a href="http://127.0.0.1:5500/pages/home.html" class="navbar-link" data-route="/">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="http://127.0.0.1:5500/pages/ranks.html" class="navbar-link" data-route="/ranks">
+            <i class="fas fa-star"></i>
+            <span>Ranks</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/training.html"
+            class="navbar-link"
+            data-route="/training"
+          >
+            <i class="fas fa-graduation-cap"></i>
+            <span>Training</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/fitness.html"
+            class="navbar-link"
+            data-route="/fitness"
+          >
+            <i class="fas fa-dumbbell"></i>
+            <span>Fitness</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/gallery.html"
+            class="navbar-link"
+            data-route="/gallery"
+          >
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/join-army.html"
+            class="navbar-cta"
+            data-route="/join"
+          >
+            Join Army
+          </a>
+          <a  href="http://127.0.0.1:5500/pages/login.html" class="navbar-link" data-route="/login">
+            <i class="fas fa-user"></i>
+            <span>Login</span>
+          </a>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggle" class="navbar-link">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-container">
+          <ul class="mobile-menu-list">
+            <li>
+              <a href="#home" class="mobile-menu-link" data-route="/">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/ranks.html"
+                class="mobile-menu-link"
+                data-route="/ranks"
+              >
+                <i class="fas fa-star"></i>
+                <span>Ranks & Badges</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/training.html"
+                class="mobile-menu-link"
+                data-route="/training"
+              >
+                <i class="fas fa-graduation-cap"></i>
+                <span>Training Programs</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/fitness.html"
+                class="mobile-menu-link"
+                data-route="/fitness"
+              >
+                <i class="fas fa-dumbbell"></i>
+                <span>Fitness Guide</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/gallery.html"
+                class="mobile-menu-link"
+                data-route="/gallery"
+              >
+                <i class="fas fa-images"></i>
+                <span>Gallery</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/join-army.html"
+                class="mobile-menu-cta"
+                data-route="/join"
+              >
+                Join Indian Army
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/login.html"
+                class="mobile-menu-link"
+                data-route="/login"
+              >
+                <i class="fas fa-user"></i>
+                <span>Login / Register</span>
+              </a>
+            </li>
+            <li>
+              <button id="themeToggleMobile" class="mobile-menu-link">
+                <i class="fas fa-moon"></i>
+                <span>Toggle Theme</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <!-- Fitness Guide Page -->
+<section class="section-padding bg-armyDark">
+    <div class="container">
+        <h1 class="section-title text-center">Physical Fitness Guide</h1>
+        <p class="text-center text-gray-400 max-w-3xl mx-auto mb-12">
+            Building soldiers of steel: A comprehensive guide to developing the endurance, strength, 
+            and mental resilience required for service in the Indian Army.
+        </p>
+        
+        <!-- Fitness Components -->
+        <div class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Essential Fitness Components</h2>
+            
+            <div class="cards-container cards-grid-3">
+                <div class="card-base">
+                    <div class="card-body text-center">
+                        <div class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-running text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Endurance Training</h3>
+                        <p class="text-gray-300 mb-4">
+                            Build cardiovascular strength and stamina for long marches and sustained operations.
+                        </p>
+                        <div class="text-left">
+                            <h4 class="font-bold text-orange-500 mb-2">Key Activities:</h4>
+                            <ul class="text-sm text-gray-400 space-y-1">
+                                <li><i class="fas fa-arrow-right text-green-500 mr-2"></i> Long-distance running</li>
+                                <li><i class="fas fa-arrow-right text-green-500 mr-2"></i> Rucksack marches</li>
+                                <li><i class="fas fa-arrow-right text-green-500 mr-2"></i> Swimming</li>
+                                <li><i class="fas fa-arrow-right text-green-500 mr-2"></i> Cycling</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-base">
+                    <div class="card-body text-center">
+                        <div class="w-20 h-20 bg-yellow-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-dumbbell text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Strength Training</h3>
+                        <p class="text-gray-300 mb-4">
+                            Develop explosive power and functional strength for combat situations and obstacle courses.
+                        </p>
+                        <div class="text-left">
+                            <h4 class="font-bold text-orange-500 mb-2">Key Exercises:</h4>
+                            <ul class="text-sm text-gray-400 space-y-1">
+                                <li><i class="fas fa-arrow-right text-green-500 mr-2"></i> Deadlifts & Squats</li>
+                                <li><i class="fas fa-arrow-right text-green-500 mr-2"></i> Pull-ups & Push-ups</li>
+                                <li><i class="fas fa-arrow-right text-green-500 mr-2"></i> Kettlebell circuits</li>
+                                <li><i class="fas fa-arrow-right text-green-500 mr-2"></i> Medicine ball throws</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-base">
+                    <div class="card-body text-center">
+                        <div class="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-brain text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Mental Resilience</h3>
+                        <p class="text-gray-300 mb-4">
+                            Train the mind for focus, stress management, and tactical decision-making under pressure.
+                        </p>
+                        <div class="text-left">
+                            <h4 class="font-bold text-orange-500 mb-2">Techniques:</h4>
+                            <ul class="text-sm text-gray-400 space-y-1">
+                                <li><i class="fas fa-arrow-right text-green-500 mr-2"></i> Meditation & Breathwork</li>
+                                <li><i class="fas fa-arrow-right text-green-500 mr-2"></i> Stress inoculation training</li>
+                                <li><i class="fas fa-arrow-right text-green-500 mr-2"></i> Sleep optimization</li>
+                                <li><i class="fas fa-arrow-right text-green-500 mr-2"></i> Visualization techniques</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Weekly Training Plan -->
+        <div class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Weekly Training Schedule</h2>
+            
+            <div class="bg-armyGreen rounded-xl p-6">
+                <div class="overflow-x-auto">
+                    <table class="table w-full">
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Morning (05:30-07:30)</th>
+                                <th>Evening (16:00-18:00)</th>
+                                <th>Focus Area</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-semibold">Monday</td>
+                                <td>Long Run (10km) + Calisthenics</td>
+                                <td>Strength Training (Upper Body)</td>
+                                <td><span class="bg-red-600 text-white px-2 py-1 rounded text-xs">Endurance</span></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Tuesday</td>
+                                <td>Interval Training + Core Work</td>
+                                <td>Martial Arts & Combat Drills</td>
+                                <td><span class="bg-yellow-600 text-white px-2 py-1 rounded text-xs">Strength</span></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Wednesday</td>
+                                <td>Rucksack March (15km with 20kg)</td>
+                                <td>Recovery & Flexibility Training</td>
+                                <td><span class="bg-red-600 text-white px-2 py-1 rounded text-xs">Endurance</span></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Thursday</td>
+                                <td>Hill Repeats + Plyometrics</td>
+                                <td>Strength Training (Lower Body)</td>
+                                <td><span class="bg-yellow-600 text-white px-2 py-1 rounded text-xs">Power</span></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Friday</td>
+                                <td>Swimming + Water Confidence</td>
+                                <td>Obstacle Course Practice</td>
+                                <td><span class="bg-blue-600 text-white px-2 py-1 rounded text-xs">Skills</span></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Saturday</td>
+                                <td>Cross-training (Cycling/Row)</td>
+                                <td>Team Sports & Competitions</td>
+                                <td><span class="bg-green-600 text-white px-2 py-1 rounded text-xs">Teamwork</span></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Sunday</td>
+                                <td colspan="2" class="text-center">Active Recovery & Planning</td>
+                                <td><span class="bg-purple-600 text-white px-2 py-1 rounded text-xs">Recovery</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Physical Tests Requirements -->
+        <div class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">SSB Physical Standards</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-6">Men's Standards</h3>
+                    <div class="space-y-4">
+                        <div class="bg-armyGreen p-4 rounded-lg">
+                            <h4 class="font-bold text-white mb-2">1.6 Kilometer Run</h4>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-300">Maximum Time:</span>
+                                <span class="text-orange-500 font-bold">5 minutes 30 seconds</span>
+                            </div>
+                            <div class="mt-2">
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-400 mt-1">
+                                    <span>Beginner: 8:00</span>
+                                    <span>Target: 5:30</span>
+                                    <span>Excellent: 5:00</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-armyGreen p-4 rounded-lg">
+                            <h4 class="font-bold text-white mb-2">Pull-ups</h4>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-300">Minimum Requirement:</span>
+                                <span class="text-orange-500 font-bold">6 repetitions</span>
+                            </div>
+                            <div class="mt-2">
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 60%"></div>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-400 mt-1">
+                                    <span>Beginner: 0</span>
+                                    <span>Target: 6</span>
+                                    <span>Excellent: 15+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-6">Women's Standards</h3>
+                    <div class="space-y-4">
+                        <div class="bg-armyGreen p-4 rounded-lg">
+                            <h4 class="font-bold text-white mb-2">800 Meter Run</h4>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-300">Maximum Time:</span>
+                                <span class="text-orange-500 font-bold">4 minutes</span>
+                            </div>
+                            <div class="mt-2">
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-400 mt-1">
+                                    <span>Beginner: 6:00</span>
+                                    <span>Target: 4:00</span>
+                                    <span>Excellent: 3:30</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-armyGreen p-4 rounded-lg">
+                            <h4 class="font-bold text-white mb-2">Flexed Arm Hang</h4>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-300">Minimum Duration:</span>
+                                <span class="text-orange-500 font-bold">20 seconds</span>
+                            </div>
+                            <div class="mt-2">
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 70%"></div>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-400 mt-1">
+                                    <span>Beginner: 5s</span>
+                                    <span>Target: 20s</span>
+                                    <span>Excellent: 60s+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nutrition & Recovery -->
+<section class="section-padding bg-armyGreen">
+    <div class="container">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Nutrition & Recovery</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div>
+                <h3 class="text-xl font-bold text-white mb-6">Nutrition Guidelines</h3>
+                <div class="space-y-4">
+                    <div class="bg-armyDark p-4 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-drumstick-bite text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-white">Protein Requirements</h4>
+                        </div>
+                        <p class="text-gray-300 text-sm">
+                            • 1.6-2.2g per kg of body weight daily<br>
+                            • Sources: Chicken, fish, eggs, dairy, lentils<br>
+                            • Post-workout: 20-30g within 30 minutes
+                        </p>
+                    </div>
+                    
+                    <div class="bg-armyDark p-4 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-bread-slice text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-white">Carbohydrate Timing</h4>
+                        </div>
+                        <p class="text-gray-300 text-sm">
+                            • 5-7g per kg of body weight daily<br>
+                            • Complex carbs: Oats, brown rice, sweet potatoes<br>
+                            • Simple carbs pre/post workout for energy
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-xl font-bold text-white mb-6">Recovery Protocols</h3>
+                <div class="space-y-4">
+                    <div class="bg-armyDark p-4 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-bed text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-white">Sleep Optimization</h4>
+                        </div>
+                        <p class="text-gray-300 text-sm">
+                            • Minimum 7-8 hours quality sleep<br>
+                            • Consistent sleep schedule<br>
+                            • Dark, cool sleeping environment<br>
+                            • No screens 1 hour before bed
+                        </p>
+                    </div>
+                    
+                    <div class="bg-armyDark p-4 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-hands-helping text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-white">Active Recovery</h4>
+                        </div>
+                        <p class="text-gray-300 text-sm">
+                            • Light cardio on rest days<br>
+                            • Foam rolling and stretching<br>
+                            • Hydration: 3-4 liters daily<br>
+                            • Cold therapy for inflammation
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sample Meal Plan -->
+        <div class="bg-armyDark rounded-xl p-6 mb-8">
+            <h3 class="text-xl font-bold text-white mb-6 text-center">Sample Daily Meal Plan (3000 Calories)</h3>
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-sun text-white"></i>
+                    </div>
+                    <h4 class="font-bold text-white mb-2">Breakfast</h4>
+                    <p class="text-gray-300 text-sm">
+                        4 egg whites + 2 whole eggs<br>
+                        100g oats with milk<br>
+                        1 banana<br>
+                        Green tea
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-cloud-sun text-white"></i>
+                    </div>
+                    <h4 class="font-bold text-white mb-2">Lunch</h4>
+                    <p class="text-gray-300 text-sm">
+                        200g chicken breast<br>
+                        150g brown rice<br>
+                        Mixed vegetables<br>
+                        Salad with olive oil
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-cloud text-white"></i>
+                    </div>
+                    <h4 class="font-bold text-white mb-2">Pre-Workout</h4>
+                    <p class="text-gray-300 text-sm">
+                        Whey protein shake<br>
+                        1 apple<br>
+                        10 almonds<br>
+                        500ml water
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-moon text-white"></i>
+                    </div>
+                    <h4 class="font-bold text-white mb-2">Dinner</h4>
+                    <p class="text-gray-300 text-sm">
+                        150g fish<br>
+                        100g sweet potato<br>
+                        Steamed vegetables<br>
+                        Greek yogurt
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center">
+            <a href="#" class="btn btn-primary">
+                <i class="fas fa-download mr-2"></i> Download Complete Fitness Plan
+            </a>
+        </div>
+    </div>
+</section>
+</body>
+</html>

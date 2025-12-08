@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/components/cards.css">
+    <link rel="stylesheet" href="../css/components/footer.css">
+    <link rel="stylesheet" href="../css/components/gallery.css">
+    <link rel="stylesheet" href="../css/components/hero.css">
+    <link rel="stylesheet" href="../css/components/navbar.css">
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/style.css">
+        <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        armyGreen: '#3A4F41',
+                        armyOlive: '#6B8E23',
+                        armyNight: '#0B0B0B',
+                        armyDark: '#1A1A1A',
+                        indiaSaffron: '#FF9933',
+                        indiaGreen: '#138808',
+                        indiaWhite: '#FFFFFF',
+                        steelGray: '#4A5568',
+                        cadetBlue: '#5D8AA8'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto-mono': ['Roboto Mono', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-glow': 'pulseGlow 2s infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 5px rgba(255, 153, 51, 0.3)' },
+                            '50%': { boxShadow: '0 0 20px rgba(255, 153, 51, 0.6)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .tracking-in-expand{-webkit-animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 4s cubic-bezier(.215,.61,.355,1.000) both}
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF9933, #138808);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .badge-icon {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.7), rgba(26, 26, 26, 0.9));
+        }
+        
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #FF9933, #138808);
+            border-radius: 5px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .parallax-section {
+                background-attachment: scroll;
+            }
+        }
+        
+@-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+    </style>
+</head>
+<body>
+    
+    <header class="navbar">
+      <div class="navbar-container">
+        <!-- Logo -->
+        <div class="navbar-logo">
+          <div class="logo-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h1 class="logo-text">
+            <span class="saffron">Indian</span>
+            <span class="green">Army</span>
+          
+           
+          </h1>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="navbar-menu desktop">
+          <a href="http://127.0.0.1:5500/pages/home.html" class="navbar-link" data-route="/">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="http://127.0.0.1:5500/pages/ranks.html" class="navbar-link" data-route="/ranks">
+            <i class="fas fa-star"></i>
+            <span>Ranks</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/training.html"
+            class="navbar-link"
+            data-route="/training"
+          >
+            <i class="fas fa-graduation-cap"></i>
+            <span>Training</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/fitness.html"
+            class="navbar-link"
+            data-route="/fitness"
+          >
+            <i class="fas fa-dumbbell"></i>
+            <span>Fitness</span>
+          </a>
+          <a
+            href="http://127.0.0.1:5500/pages/gallery.html"
+            class="navbar-link"
+            data-route="/gallery"
+          >
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+          </a>
+          <a
+             href="http://127.0.0.1:5500/pages/join-army.html"
+            class="navbar-cta"
+            data-route="/join"
+          >
+            Join Army
+          </a>
+          <a  href="http://127.0.0.1:5500/pages/login.html" class="navbar-link" data-route="/login">
+            <i class="fas fa-user"></i>
+            <span>Login</span>
+          </a>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggle" class="navbar-link">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-container">
+          <ul class="mobile-menu-list">
+            <li>
+              <a href="#home" class="mobile-menu-link" data-route="/">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/ranks.html"
+                class="mobile-menu-link"
+                data-route="/ranks"
+              >
+                <i class="fas fa-star"></i>
+                <span>Ranks & Badges</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/training.html"
+                class="mobile-menu-link"
+                data-route="/training"
+              >
+                <i class="fas fa-graduation-cap"></i>
+                <span>Training Programs</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/fitness.html"
+                class="mobile-menu-link"
+                data-route="/fitness"
+              >
+                <i class="fas fa-dumbbell"></i>
+                <span>Fitness Guide</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/gallery.html"
+                class="mobile-menu-link"
+                data-route="/gallery"
+              >
+                <i class="fas fa-images"></i>
+                <span>Gallery</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/join-army.html"
+                class="mobile-menu-cta"
+                data-route="/join"
+              >
+                Join Indian Army
+              </a>
+            </li>
+            <li>
+              <a
+                href="./pages/login.html"
+                class="mobile-menu-link"
+                data-route="/login"
+              >
+                <i class="fas fa-user"></i>
+                <span>Login / Register</span>
+              </a>
+            </li>
+            <li>
+              <button id="themeToggleMobile" class="mobile-menu-link">
+                <i class="fas fa-moon"></i>
+                <span>Toggle Theme</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- FAQ Page -->
+<section class="section-padding bg-armyDark">
+    <div class="container">
+        <h1 class="section-title text-center">Frequently Asked Questions</h1>
+        <p class="text-center text-gray-400 max-w-3xl mx-auto mb-12">
+            Find answers to common questions about joining the Indian Army, 
+            eligibility criteria, training, and career opportunities.
+        </p>
+        
+        <!-- Search Bar -->
+        <div class="max-w-2xl mx-auto mb-12">
+            <div class="relative">
+                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="faqSearch" placeholder="Search for questions..." 
+                       class="w-full pl-12 pr-4 py-3 bg-armyGreen border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indiaSaffron">
+            </div>
+        </div>
+        
+        <!-- FAQ Categories -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-white mb-6">Browse by Category</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="#eligibility" class="bg-armyGreen p-4 rounded-lg text-center hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-user-check text-indiaSaffron text-xl mb-2 block"></i>
+                    <span class="text-white font-medium">Eligibility</span>
+                </a>
+                <a href="#recruitment" class="bg-armyGreen p-4 rounded-lg text-center hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-file-alt text-indiaSaffron text-xl mb-2 block"></i>
+                    <span class="text-white font-medium">Recruitment</span>
+                </a>
+                <a href="#training" class="bg-armyGreen p-4 rounded-lg text-center hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-graduation-cap text-indiaSaffron text-xl mb-2 block"></i>
+                    <span class="text-white font-medium">Training</span>
+                </a>
+                <a href="#career" class="bg-armyGreen p-4 rounded-lg text-center hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-briefcase text-indiaSaffron text-xl mb-2 block"></i>
+                    <span class="text-white font-medium">Career</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- FAQ Accordion -->
+        <div class="space-y-4" id="faqAccordion">
+            <!-- Eligibility Questions -->
+            <div class="faq-category" id="eligibility">
+                <h2 class="text-2xl font-bold text-white mb-6">Eligibility Criteria</h2>
+                <div class="space-y-4">
+                    <div class="faq-item bg-armyGreen rounded-lg overflow-hidden">
+                        <button class="faq-question w-full p-6 text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-white">What are the age requirements for joining the Indian Army?</span>
+                            <i class="fas fa-chevron-down text-indiaSaffron"></i>
+                        </button>
+                        <div class="faq-answer p-6 bg-armyDark hidden">
+                            <p class="text-gray-300">
+                                Age requirements vary based on the entry scheme:
+                                <br><br>
+                                • <strong>Agniveer (Soldier):</strong> 17.5 to 21 years (relaxable for某些 categories)
+                                <br>
+                                • <strong>Technical Entries:</strong> 20 to 27 years for graduates
+                                <br>
+                                • <strong>NCC Special Entry:</strong> 19 to 25 years
+                                <br>
+                                • <strong>Women Entry:</strong> 19 to 25 years
+                                <br><br>
+                                Age relaxation is provided for certain categories as per government rules.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-armyGreen rounded-lg overflow-hidden">
+                        <button class="faq-question w-full p-6 text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-white">What are the minimum educational qualifications required?</span>
+                            <i class="fas fa-chevron-down text-indiaSaffron"></i>
+                        </button>
+                        <div class="faq-answer p-6 bg-armyDark hidden">
+                            <p class="text-gray-300">
+                                Educational requirements vary by entry type:
+                                <br><br>
+                                • <strong>Soldier (General Duty):</strong> Class 10th/Matric with 45% marks
+                                <br>
+                                • <strong>Soldier (Technical):</strong> 10+2 with Physics, Chemistry, Maths
+                                <br>
+                                • <strong>Officer Entries:</strong> Graduation degree (varies by branch)
+                                <br>
+                                • <strong>Technical Entries:</strong> Engineering degree in relevant field
+                                <br><br>
+                                Specific requirements are detailed in each recruitment notification.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-armyGreen rounded-lg overflow-hidden">
+                        <button class="faq-question w-full p-6 text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-white">What are the physical standards for height and weight?</span>
+                            <i class="fas fa-chevron-down text-indiaSaffron"></i>
+                        </button>
+                        <div class="faq-answer p-6 bg-armyDark hidden">
+                            <p class="text-gray-300">
+                                Minimum physical standards:
+                                <br><br>
+                                • <strong>Height:</strong> 157.5 cm for men, 152 cm for women (relaxable for某些 regions)
+                                <br>
+                                • <strong>Chest:</strong> 77 cm (minimum), 82 cm (expanded) for men
+                                <br>
+                                • <strong>Weight:</strong> Proportionate to height and age
+                                <br><br>
+                                Regional relaxations apply for candidates from certain areas like 
+                                North-East, Hilly regions, and Tribal areas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recruitment Questions -->
+            <div class="faq-category" id="recruitment">
+                <h2 class="text-2xl font-bold text-white mb-6 mt-12">Recruitment Process</h2>
+                <div class="space-y-4">
+                    <div class="faq-item bg-armyGreen rounded-lg overflow-hidden">
+                        <button class="faq-question w-full p-6 text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-white">What is the selection process for Agniveer?</span>
+                            <i class="fas fa-chevron-down text-indiaSaffron"></i>
+                        </button>
+                        <div class="faq-answer p-6 bg-armyDark hidden">
+                            <p class="text-gray-300">
+                                The Agniveer selection process includes:
+                                <br><br>
+                                1. <strong>Online Registration</strong> - Application submission
+                                <br>
+                                2. <strong>Physical Fitness Test</strong> - 1.6km run, pull-ups, etc.
+                                <br>
+                                3. <strong>Physical Measurement</strong> - Height, weight, chest
+                                <br>
+                                4. <strong>Medical Examination</strong> - Comprehensive health check
+                                <br>
+                                5. <strong>Written Test</strong> - Common Entrance Examination
+                                <br>
+                                6. <strong>Document Verification</strong> - Original certificate check
+                                <br><br>
+                                Successful candidates undergo 6 months of training.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-armyGreen rounded-lg overflow-hidden">
+                        <button class="faq-question w-full p-6 text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-white">How can I apply for officer entries?</span>
+                            <i class="fas fa-chevron-down text-indiaSaffron"></i>
+                        </button>
+                        <div class="faq-answer p-6 bg-armyDark hidden">
+                            <p class="text-gray-300">
+                                Officer entries have different application processes:
+                                <br><br>
+                                • <strong>NDA/NA</strong> - Through UPSC examination
+                                <br>
+                                • <strong>CDS</strong> - Combined Defense Services exam by UPSC
+                                <br>
+                                • <strong>Technical Entries</strong> - Direct application on army website
+                                <br>
+                                • <strong>NCC Special Entry</strong> - For NCC 'C' certificate holders
+                                <br>
+                                • <strong>JAG Entry</strong> - For law graduates
+                                <br><br>
+                                Each entry has specific eligibility and application procedures.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-armyGreen rounded-lg overflow-hidden">
+                        <button class="faq-question w-full p-6 text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-white">What documents are required during recruitment?</span>
+                            <i class="fas fa-chevron-down text-indiaSaffron"></i>
+                        </button>
+                        <div class="faq-answer p-6 bg-armyDark hidden">
+                            <p class="text-gray-300">
+                                Essential documents include:
+                                <br><br>
+                                • Class 10th and 12th mark sheets and certificates
+                                <br>
+                                • Graduation degree and mark sheets (for officer entries)
+                                <br>
+                                • Domicile certificate
+                                <br>
+                                • Caste certificate (if applicable)
+                                <br>
+                                • NCC certificate (if applicable)
+                                <br>
+                                • Sports achievement certificates (if applicable)
+                                <br>
+                                • Identity proof (Aadhar card, voter ID, etc.)
+                                <br>
+                                • Recent passport-size photographs
+                                <br><br>
+                                All documents must be original and self-attested copies.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Training Questions -->
+            <div class="faq-category" id="training">
+                <h2 class="text-2xl font-bold text-white mb-6 mt-12">Training & Preparation</h2>
+                <div class="space-y-4">
+                    <div class="faq-item bg-armyGreen rounded-lg overflow-hidden">
+                        <button class="faq-question w-full p-6 text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-white">What is the duration of basic military training?</span>
+                            <i class="fas fa-chevron-down text-indiaSaffron"></i>
+                        </button>
+                        <div class="faq-answer p-6 bg-armyDark hidden">
+                            <p class="text-gray-300">
+                                Training duration varies:
+                                <br><br>
+                                • <strong>Agniveer:</strong> 6 months basic training + 6 months advanced training
+                                <br>
+                                • <strong>Soldiers:</strong> 9 months to 1 year (depending on trade)
+                                <br>
+                                • <strong>JCOs:</strong> 1-2 years (including promotion courses)
+                                <br>
+                                • <strong>Officers (IMA):</strong> 18 months
+                                <br>
+                                • <strong>Officers (OTA):</strong> 49 weeks
+                                <br><br>
+                                Specialized training durations vary based on the arm/service.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-armyGreen rounded-lg overflow-hidden">
+                        <button class="faq-question w-full p-6 text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-white">How should I prepare for the physical tests?</span>
+                            <i class="fas fa-chevron-down text-indiaSaffron"></i>
+                        </button>
+                        <div class="faq-answer p-6 bg-armyDark hidden">
+                            <p class="text-gray-300">
+                                Recommended preparation plan:
+                                <br><br>
+                                • <strong>Running:</strong> Start with 2km daily, gradually increase to 5km
+                                <br>
+                                • <strong>Pull-ups:</strong> Practice daily, aim for 10+ repetitions
+                                <br>
+                                • <strong>Push-ups:</strong> Minimum 30 in 2 minutes
+                                <br>
+                                • <strong>Sit-ups:</strong> Minimum 40 in 2 minutes
+                                <br>
+                                • <strong>Obstacle Course:</strong> Practice individual obstacles
+                                <br>
+                                • <strong>Diet:</strong> High protein, balanced nutrition
+                                <br>
+                                • <strong>Rest:</strong> Adequate sleep and recovery
+                                <br><br>
+                                Follow the training guides available on our fitness page.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-armyGreen rounded-lg overflow-hidden">
+                        <button class="faq-question w-full p-6 text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-white">What is covered in officer training at IMA/OTA?</span>
+                            <i class="fas fa-chevron-down text-indiaSaffron"></i>
+                        </button>
+                        <div class="faq-answer p-6 bg-armyDark hidden">
+                            <p class="text-gray-300">
+                                Officer training includes:
+                                <br><br>
+                                • <strong>Military Subjects:</strong> Weapon training, tactics, map reading
+                                <br>
+                                • <strong>Leadership:</strong> Command and staff duties
+                                <br>
+                                • <strong>Physical Training:</strong> Endurance, strength, obstacle courses
+                                <br>
+                                • <strong>Academics:</strong> Military history, law, administration
+                                <br>
+                                • <strong>Adventure:</strong> Mountaineering, watermanship, parasailing
+                                <br>
+                                • <strong>Field Craft:</strong> Camouflage, field defenses, patrolling
+                                <br>
+                                • <strong>Drill:</strong> Ceremonial drill and parade training
+                                <br><br>
+                                Training is comprehensive and transforms civilians into leaders.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Career Questions -->
+            <div class="faq-category" id="career">
+                <h2 class="text-2xl font-bold text-white mb-6 mt-12">Career & Benefits</h2>
+                <div class="space-y-4">
+                    <div class="faq-item bg-armyGreen rounded-lg overflow-hidden">
+                        <button class="faq-question w-full p-6 text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-white">What are the career progression opportunities?</span>
+                            <i class="fas fa-chevron-down text-indiaSaffron"></i>
+                        </button>
+                        <div class="faq-answer p-6 bg-armyDark hidden">
+                            <p class="text-gray-300">
+                                Career progression varies by entry:
+                                <br><br>
+                                • <strong>Agniveer:</strong> 4-year service, 25% retained for regular cadre
+                                <br>
+                                • <strong>Soldiers:</strong> Can rise to JCO ranks through promotion
+                                <br>
+                                • <strong>JCOs:</strong> Can become Honorary Commissioned Officers
+                                <br>
+                                • <strong>Officers:</strong> Can rise to General ranks based on merit
+                                <br><br>
+                                Promotion is based on merit, seniority, and vacancies. 
+                                Specialized courses and higher education opportunities are available.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-armyGreen rounded-lg overflow-hidden">
+                        <button class="faq-question w-full p-6 text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-white">What benefits and allowances are provided?</span>
+                            <i class="fas fa-chevron-down text-indiaSaffron"></i>
+                        </button>
+                        <div class="faq-answer p-6 bg-armyDark hidden">
+                            <p class="text-gray-300">
+                                Comprehensive benefits include:
+                                <br><br>
+                                • <strong>Pay & Allowances:</strong> Basic pay, DA, HRA, Transport allowance
+                                <br>
+                                • <strong>Medical:</strong> Free medical care for self and dependents
+                                <br>
+                                • <strong>Housing:</strong> Accommodation or HRA
+                                <br>
+                                • <strong>Ration:</strong> Subsidized rations
+                                <br>
+                                • <strong>Leave:</strong> Annual leave, casual leave, sick leave
+                                <br>
+                                • <strong>Education:</strong> Children education allowance
+                                <br>
+                                • <strong>Travel:</strong> Leave travel concession
+                                <br>
+                                • <strong>Pension:</strong> For regular cadre after retirement
+                                <br>
+                                • <strong>Insurance:</strong> Group insurance schemes
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-armyGreen rounded-lg overflow-hidden">
+                        <button class="faq-question w-full p-6 text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-white">Can I pursue higher education while serving?</span>
+                            <i class="fas fa-chevron-down text-indiaSaffron"></i>
+                        </button>
+                        <div class="faq-answer p-6 bg-armyDark hidden">
+                            <p class="text-gray-300">
+                                Yes, the army encourages higher education:
+                                <br><br>
+                                • <strong>Study Leave:</strong> Up to 2 years for higher studies
+                                <br>
+                                • <strong>Correspondence Courses:</strong> Through IGNOU and other universities
+                                <br>
+                                • <strong>Professional Courses:</strong> Technical and management courses
+                                <br>
+                                • <strong>Foreign Courses:</strong> Selected officers can study abroad
+                                <br>
+                                • <strong>Financial Assistance:</strong> For approved courses
+                                <br><br>
+                                Many officers complete Master's degrees, PhDs, and professional 
+                                qualifications while serving.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Still Have Questions -->
+        <div class="mt-16 bg-gradient-to-r from-indiaSaffron to-indiaGreen rounded-xl p-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold text-white mb-4">Still Have Questions?</h3>
+                <p class="text-white mb-6 max-w-2xl mx-auto">
+                    Our recruitment team is available to answer any specific questions 
+                    you may have about joining the Indian Army.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="../pages/contact.html" class="btn btn-primary bg-white text-armyDark hover:bg-gray-100" data-page="contact">
+                        <i class="fas fa-phone-alt mr-2"></i> Contact Us
+                    </a>
+                    <a href="../pages/join-army.html" class="btn btn-outline border-white text-white hover:bg-white hover:text-armyDark" data-page="join">
+                        <i class="fas fa-file-alt mr-2"></i> Start Application
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Resources -->
+<section class="section-padding bg-armyGreen">
+    <div class="container">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Helpful Resources</h2>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-armyDark p-6 rounded-xl">
+                <div class="w-12 h-12 bg-indiaSaffron rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-file-pdf text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Download Brochures</h3>
+                <p class="text-gray-300 mb-4">
+                    Comprehensive guides covering eligibility, selection process, 
+                    training, and career prospects.
+                </p>
+                <a href="#" class="inline-flex items-center text-indiaSaffron hover:text-orange-400 font-medium">
+                    Download All <i class="fas fa-download ml-2"></i>
+                </a>
+            </div>
+            
+            <div class="bg-armyDark p-6 rounded-xl">
+                <div class="w-12 h-12 bg-indiaGreen rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-video text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Video Tutorials</h3>
+                <p class="text-gray-300 mb-4">
+                    Step-by-step guides for physical tests, interview preparation, 
+                    and application process.
+                </p>
+                <a href="#" class="inline-flex items-center text-indiaSaffron hover:text-orange-400 font-medium">
+                    Watch Videos <i class="fas fa-play-circle ml-2"></i>
+                </a>
+            </div>
+            
+            <div class="bg-armyDark p-6 rounded-xl">
+                <div class="w-12 h-12 bg-armyOlive rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-comments text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Community Forum</h3>
+                <p class="text-gray-300 mb-4">
+                    Connect with fellow aspirants, share experiences, and get 
+                    answers from successful candidates.
+                </p>
+                <a href="#" class="inline-flex items-center text-indiaSaffron hover:text-orange-400 font-medium">
+                    Join Discussion <i class="fas fa-users ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
